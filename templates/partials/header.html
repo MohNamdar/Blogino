@@ -1,0 +1,21 @@
+<!-- Website header-->
+<h1>وبلاگ من</h1>
+<h2>زیرعنوان وبلاگ من</h2>
+<nav>
+    <!-- Navigation menu-->
+    <ul>
+        <li><a href="{% url 'blog:home' %}">خانه</a></li>
+        <li><a href="{% url 'blog:about' %}">درباره من</a></li>
+        <li><a href="{% url 'blog:contact' %}">تماس با ما</a></li>
+        <li><a href="{% url 'blog:podcast_list' %}">پادکست</a></li>
+        <li><a href="{% url 'blog:page' %}">صفحه متنی</a></li>
+        <li><a href="{% url 'blog:gallery' %}">گالری</a></li>
+        <li class="dropdown"><a href="#">منوی بازشو</a>
+            <ul class="dropdown-content">
+                <li><a href="{% url 'blog:article_list' %}">لیست مقاله‌ها</a></li>
+                <li><a href="{% url 'blog:page' %}">قوانین و مقررات</a></li>
+                <li><a href="{% url 'blog:faq' %}">سوال‌های متداول</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>

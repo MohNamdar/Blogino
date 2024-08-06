@@ -1,0 +1,18 @@
+from django.urls import path
+from . import views
+
+app_name = 'blog'
+
+urlpatterns = [
+    path('', views.home, name='home'),
+    path('gallery/', views.gallery, name='gallery'),
+    path('page/', views.page, name='page'),
+    path('podcast-list/', views.podcast_list, name='podcast_list'),
+    path('podcast/', views.podcast_single, name='podcast_single'),
+    path('contact/', views.contact, name='contact'),
+    path('about/', views.about, name='about'),
+    path('article-list/', views.article_list, name='article_list'),
+    path('article/', views.article_single, name='article_single'),
+    path('faq/', views.faq, name='faq'),
+
+]

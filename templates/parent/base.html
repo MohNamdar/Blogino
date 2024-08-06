@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+    {% block head %}{% endblock %}
+
+</head>
+
+<header>
+    {% include 'partials/header.html' %}
+</header>
+
+<body>
+{% block content %}{% endblock %}
+</body>
+
+<script type="text/javascript" src="{% static 'js/prism.js' %}"></script>
+
+<footer>
+    {% include 'partials/footer.html' %}
+</footer>
+
+</html>

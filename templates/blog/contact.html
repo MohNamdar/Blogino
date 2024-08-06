@@ -1,0 +1,115 @@
+{% extends 'parent/base.html' %}
+
+{% block title %}تماس با ما{% endblock %}
+
+{% block head %}
+    <!-- Document metadata-->
+    <meta name="description" content="توضیحات مربوط به صفحه">
+    <meta name="keywords" content="کلمات کلیدی مربوط به صفحه">
+    <meta name="author" content="نام نویسنده">
+    <meta name="robots" content="index, follow">
+    <!-- Open Graph meta tags-->
+    <meta property="og:title" content="عنوان صفحه">
+    <meta property="og:description" content="توضیحات مربوط به صفحه">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="آدرس صفحه">
+    <meta property="og:image" content="آدرس تصویر">
+    <!-- Twitter Cards meta tags-->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="عنوان صفحه">
+    <meta name="twitter:description" content="توضیحات مربوط به صفحه">
+    <meta name="twitter:image" content="آدرس تصویر">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <!-- Main content section-->
+        <main>
+            <!-- Breadcrumb navigation-->
+            <div class="breadcrumb"><a href="index.html">خانه</a> &gt;
+                تماس با من
+            </div>
+            <section class="card">
+                <h2>تماس با من</h2>
+                <p>برای ارتباط با من، لطفاً فرم زیر را پر کنید یا از اطلاعات تماس پایین استفاده کنید.</p>
+                <div class="contact-info">
+                    <p><strong>آدرس ایمیل: </strong><span class="email">info@example.com</span></p>
+                    <p><strong>تلفن: </strong>123-456-7890</p>
+                    <p><strong>آدرس: </strong>تهران، خیابان مثال، کوچه تست، پلاک 123</p>
+                </div>
+                <form class="contact-form" action="submit_contact_form.php" method="post">
+                    <label for="name">نام:</label>
+                    <input id="name" type="text" name="name" required>
+                    <label for="email">ایمیل:</label>
+                    <input id="email" type="email" name="email" required>
+                    <label for="message">پیام:</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                    <button type="submit">ارسال پیام</button>
+                </form>
+            </section>
+        </main>
+        <!-- Sidebar-->
+        <aside class="sidebar">
+            <!-- Social media boxes--><a class="social-box twitter" href="https://twitter.com/" target="_blank">توییتر
+            من</a><a class="social-box telegram" href="https://telegram.org/" target="_blank">کانال تلگرام</a><a
+                class="social-box youtube" href="https://www.youtube.com/" target="_blank">کانال یوتوب</a><a
+                class="social-box instagram" href="https://www.instagram.com/" target="_blank">اینستاگرام من</a>
+            <div class="card">
+                <form method="get" action="#">
+                    <input type="text" placeholder="جستجوی نوشته‌ها...">
+                    <button type="submit">>></button>
+                </form>
+            </div>
+            <div class="card">
+                <h5 class="sidebar-card-title">دسته‌بندی‌ها</h5>
+                <ul>
+                    <li><a href="article-list.html">تکنولوژی</a></li>
+                    <li><a href="article-list.html">گجت‌ها</a></li>
+                    <li><a href="article-list.html">نرم‌افزار</a></li>
+                    <li><a href="article-list.html">هوش مصنوعی</a></li>
+                    <li><a href="article-list.html">اینترنت اشیاء (IoT)</a></li>
+                    <li><a href="article-list.html">امنیت اطلاعات</a></li>
+                    <li><a href="article-list.html">بلاک‌چین</a></li>
+                    <!-- Add more categories as needed-->
+                </ul>
+            </div>
+            <div class="card">
+                <h5 class="sidebar-card-title">سال‌های قبل در چنین روزی</h5>
+                <ul>
+                    <li><a href="article-single.html">تکنولوژی‌های نوظهور در دنیای اینترنت اشیاء</a></li>
+                    <li><a href="article-single.html">آخرین روند‌ها در توسعه‌ی نرم‌افزارهای مبتنی بر هوش مصنوعی</a></li>
+                    <li><a href="article-single.html">چالش‌ها و راهکارهای امنیت سایبری در دنیای ارتباطات هوشمند</a></li>
+                    <li><a href="article-single.html">جهش‌های بزرگ در تکنولوژی‌های رایانه‌ای و شبکه‌های پرسرعت</a></li>
+                    <li><a href="article-single.html">کاربردهای جدید فناوری بلاکچین در صنعت‌های مختلف</a></li>
+                    <!-- Add more articles as needed-->
+                </ul>
+            </div>
+            <div class="card">
+                <h5 class="sidebar-card-title">آخرین گفتگوهای من</h5>
+                <ul>
+                    <li><a href="#">گفت‌و‌گو با مهندس نرم‌افزار درباره آینده‌ی هوش مصنوعی</a></li>
+                    <li><a href="#">مصاحبه با مخترع اینترنت اشیاء در مورد ارتباطات هوشمند</a></li>
+                    <li><a href="#">گفت‌و‌گو با دیزاینر UI/UX درباره آخرین ترند‌های طراحی وب</a></li>
+                    <li><a href="#">مصاحبه با دانشمند داده‌ها در مورد تحلیل‌های پیشرفته</a></li>
+                    <!-- Add more conversations as needed-->
+                </ul>
+            </div>
+            <!-- Tags Section-->
+            <div class="card">
+                <h5 class="sidebar-card-title">برچسب‌ها</h5>
+                <ul class="tags-list">
+                    <li><a href="article-list.html">تکنولوژی</a></li>
+                    <li><a href="article-list.html">برنامه‌نویسی</a></li>
+                    <li><a href="article-list.html">شبکه‌ها</a></li>
+                    <li><a href="article-list.html">امنیت</a></li>
+                    <li><a href="article-list.html">هوش مصنوعی</a></li>
+                    <li><a href="article-list.html">انترنت اشیاء</a></li>
+                    <li><a href="article-list.html">اندروید</a></li>
+                    <li><a href="article-list.html">iOS</a></li>
+                    <li><a href="article-list.html">تجارت الکترونیک</a></li>
+                    <li><a href="article-list.html">بلاکچین</a></li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+{% endblock %}
