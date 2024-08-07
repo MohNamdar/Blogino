@@ -1,7 +1,7 @@
 {% load blog_tags %}
 <ul>
     {% for category in categories %}
-        <li><a href="{% url 'blog:article_list' category.1 %}">{{ category.1 }} ({% article_counter category.0 %})</a>
+        <li><a href="{% url 'blog:article_list' category.1 %}">{{ category.1 }} ({% article_counter category %})</a>
         </li>
     {% endfor %}
 </ul>

@@ -20,5 +20,5 @@ def category_list():
 @register.simple_tag()
 def article_counter(category=''):
     if category:
-        return Article.objects.filter(category=category).count()
+        return Article.objects.filter(category=category[0]).count()
     return Article.objects.all().count()
