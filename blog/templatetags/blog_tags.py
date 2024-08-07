@@ -1,5 +1,5 @@
 from django import template
-from ..models import Article
+from ..models import *
 from markdown import markdown
 from django.utils.safestring import mark_safe
 
@@ -22,3 +22,10 @@ def article_counter(category=''):
     if category:
         return Article.objects.filter(category=category[0]).count()
     return Article.objects.all().count()
+
+
+@register.inclusion_tag('partials/tags_list.html')
+def tags_list(count=0):
+    if count:
+        return {'tags': Tag.objects.all()[:count]}
+    return {'tags': Tag.objects.all()}

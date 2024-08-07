@@ -100,5 +100,16 @@ def article_list(request, cat=''):
     return render(request, 'blog/article_list.html', context)
 
 
+def tag_list(request, tag):
+    tag = get_object_or_404(Tag, name=tag)
+    articles = Article.objects.filter(tags=tag)
+    context = {
+        'articles': articles,
+        'tag': tag
+    }
+
+    return render(request, 'blog/tag_list.html', context)
+
+
 def faq(request):
     return render(request, 'blog/faq.html')

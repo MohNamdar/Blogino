@@ -1,8 +1,8 @@
 {% extends 'parent/base.html' %}
-{% load static %}
 {% load jformat %}
 {% load blog_tags %}
-{% block title %}صفحه اصلی{% endblock %}
+
+{% block title %}مقاله‌های برچسب {{ tag }}{% endblock %}
 
 {% block head %}
     <!-- Document metadata-->
@@ -27,7 +27,12 @@
     <div class="container">
         <!-- Main content section-->
         <main>
-            <!-- Text Article -->
+            <!-- Breadcrumb navigation-->
+            <div class="breadcrumb"><a href="{% url 'blog:home' %}">خانه</a> &gt; <a href="#">برچسب ها</a> &gt;
+                {{ tag }}
+            </div>
+
+            <!-- Articles-->
             {% for article in articles %}
                 <article class="card">
                     <h2><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h2><img
@@ -63,12 +68,14 @@
                 {% category_list %}
             </div>
             <div class="card">
-                <h5 class="sidebar-card-title">درچنین روزی:</h5>
+                <h5 class="sidebar-card-title">سال‌های قبل در چنین روزی</h5>
                 <ul>
-                    {% for event in events %}
-                        <li>{{ event }}</li>
-                        <br>
-                    {% endfor %}
+                    <li><a href="article-single.html">تکنولوژی‌های نوظهور در دنیای اینترنت اشیاء</a></li>
+                    <li><a href="article-single.html">آخرین روند‌ها در توسعه‌ی نرم‌افزارهای مبتنی بر هوش مصنوعی</a></li>
+                    <li><a href="article-single.html">چالش‌ها و راهکارهای امنیت سایبری در دنیای ارتباطات هوشمند</a></li>
+                    <li><a href="article-single.html">جهش‌های بزرگ در تکنولوژی‌های رایانه‌ای و شبکه‌های پرسرعت</a></li>
+                    <li><a href="article-single.html">کاربردهای جدید فناوری بلاکچین در صنعت‌های مختلف</a></li>
+                    <!-- Add more articles as needed-->
                 </ul>
             </div>
             <div class="card">
@@ -84,7 +91,18 @@
             <!-- Tags Section-->
             <div class="card">
                 <h5 class="sidebar-card-title">برچسب‌ها</h5>
-                {% tags_list %}
+                <ul class="tags-list">
+                    <li><a href="article-list.html">تکنولوژی</a></li>
+                    <li><a href="article-list.html">برنامه‌نویسی</a></li>
+                    <li><a href="article-list.html">شبکه‌ها</a></li>
+                    <li><a href="article-list.html">امنیت</a></li>
+                    <li><a href="article-list.html">هوش مصنوعی</a></li>
+                    <li><a href="article-list.html">انترنت اشیاء</a></li>
+                    <li><a href="article-list.html">اندروید</a></li>
+                    <li><a href="article-list.html">iOS</a></li>
+                    <li><a href="article-list.html">تجارت الکترونیک</a></li>
+                    <li><a href="article-list.html">بلاکچین</a></li>
+                </ul>
             </div>
         </aside>
     </div>
