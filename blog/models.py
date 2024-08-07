@@ -31,6 +31,7 @@ class Article(models.Model):
     update_date = jmodels.jDateTimeField(auto_now=True)
     slug = models.SlugField(max_length=250, unique=True)
     category = models.CharField(choices=Category.choices, max_length=3, default=Category.TECHNOLOGY)
+    tags = models.ManyToManyField('Tag', related_name='articles', blank=True)
 
     def __str__(self):
         return self.title
@@ -46,3 +47,16 @@ class Article(models.Model):
 
     def get_absolute_url(self):
         return reverse("blog:article_single", kwargs={'slug': self.slug})
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=100)
+
+    class Meta:
+        ordering = ['name']
+        indexes = [
+            models.Index(fields=['name'])
+        ]
+
+    def __str__(self):
+        return self.name
