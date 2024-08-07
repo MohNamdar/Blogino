@@ -45,7 +45,7 @@
                     <h5>برچسب‌ها:</h5>
                     <ul class="tags-list">
                         {% for tag in article.tags.all %}
-                            <li><a href="#">{{ tag.name }}</a></li>
+                            <li><a href="{% url 'blog:tag_list' tag.name %}">{{ tag.name }}</a></li>
                         {% endfor %}
                     </ul>
 
@@ -108,27 +108,6 @@
             <div class="card">
                 <h5 class="sidebar-card-title">دسته‌بندی‌ها</h5>
                 {% category_list %}
-            </div>
-            <div class="card">
-                <h5 class="sidebar-card-title">سال‌های قبل در چنین روزی</h5>
-                <ul>
-                    <li><a href="article-single.html">تکنولوژی‌های نوظهور در دنیای اینترنت اشیاء</a></li>
-                    <li><a href="article-single.html">آخرین روند‌ها در توسعه‌ی نرم‌افزارهای مبتنی بر هوش مصنوعی</a></li>
-                    <li><a href="article-single.html">چالش‌ها و راهکارهای امنیت سایبری در دنیای ارتباطات هوشمند</a></li>
-                    <li><a href="article-single.html">جهش‌های بزرگ در تکنولوژی‌های رایانه‌ای و شبکه‌های پرسرعت</a></li>
-                    <li><a href="article-single.html">کاربردهای جدید فناوری بلاکچین در صنعت‌های مختلف</a></li>
-                    <!-- Add more articles as needed-->
-                </ul>
-            </div>
-            <div class="card">
-                <h5 class="sidebar-card-title">آخرین گفتگوهای من</h5>
-                <ul>
-                    <li><a href="#">گفت‌و‌گو با مهندس نرم‌افزار درباره آینده‌ی هوش مصنوعی</a></li>
-                    <li><a href="#">مصاحبه با مخترع اینترنت اشیاء در مورد ارتباطات هوشمند</a></li>
-                    <li><a href="#">گفت‌و‌گو با دیزاینر UI/UX درباره آخرین ترند‌های طراحی وب</a></li>
-                    <li><a href="#">مصاحبه با دانشمند داده‌ها در مورد تحلیل‌های پیشرفته</a></li>
-                    <!-- Add more conversations as needed-->
-                </ul>
             </div>
         </aside>
     </div>
