@@ -1,5 +1,5 @@
 {% extends 'parent/base.html' %}
-
+{% load static %}
 {% block title %}صفحه اصلی{% endblock %}
 
 {% block head %}
@@ -63,7 +63,7 @@
                 <!-- Article 5 - Audio-->
                 <h2><a href="article-single.html">آموزش برنامه‌نویسی Python</a></h2>
                 <audio controls>
-                    <source src="assets/media/beep.mp3" type="audio/mpeg">
+                    <source src="{% static 'media/beep.mp3' %}" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>
                 <p>در این مقاله به آموزش برنامه‌نویسی با زبان Python و مباحث مختلف از جمله لیست‌ها، شرط‌ها و حلقه‌ها
@@ -120,24 +120,24 @@ print("Factorial of", num, "is", calculate_factorial(num))</code></pre>
             <div class="card">
                 <h5 class="sidebar-card-title">دسته‌بندی‌ها</h5>
                 <ul>
-                    <li><a href="article-list.html">تکنولوژی</a></li>
-                    <li><a href="article-list.html">گجت‌ها</a></li>
-                    <li><a href="article-list.html">نرم‌افزار</a></li>
-                    <li><a href="article-list.html">هوش مصنوعی</a></li>
-                    <li><a href="article-list.html">اینترنت اشیاء (IoT)</a></li>
-                    <li><a href="article-list.html">امنیت اطلاعات</a></li>
-                    <li><a href="article-list.html">بلاک‌چین</a></li>
+                    <li><a href="{% url 'blog:article_list' 'تکنولوژی' %}">تکنولوژی</a></li>
+                    <li><a href="{% url 'blog:article_list'  'گجت‌ها' %}">گجت‌ها</a></li>
+                    <li><a href="{% url 'blog:article_list'  'نرم‌افزار' %}">نرم‌افزار</a></li>
+                    <li><a href="{% url 'blog:article_list' 'هوش مصنوعی' %}">هوش مصنوعی</a></li>
+                    <li><a href="{% url 'blog:article_list' 'اینترنت اشیاء (IoT)' %}">اینترنت اشیاء (IoT)</a></li>
+                    <li><a href="{% url 'blog:article_list' 'امنیت اطلاعات' %}">امنیت اطلاعات</a></li>
+                    <li><a href="{% url 'blog:article_list' 'بلاک‌چین' %}">بلاک‌چین</a></li>
                     <!-- Add more categories as needed-->
                 </ul>
             </div>
             <div class="card">
                 <h5 class="sidebar-card-title">سال‌های قبل در چنین روزی</h5>
                 <ul>
-                    <li><a href="article-single.html">تکنولوژی‌های نوظهور در دنیای اینترنت اشیاء</a></li>
-                    <li><a href="article-single.html">آخرین روند‌ها در توسعه‌ی نرم‌افزارهای مبتنی بر هوش مصنوعی</a></li>
-                    <li><a href="article-single.html">چالش‌ها و راهکارهای امنیت سایبری در دنیای ارتباطات هوشمند</a></li>
-                    <li><a href="article-single.html">جهش‌های بزرگ در تکنولوژی‌های رایانه‌ای و شبکه‌های پرسرعت</a></li>
-                    <li><a href="article-single.html">کاربردهای جدید فناوری بلاکچین در صنعت‌های مختلف</a></li>
+                    <li><a href="{% url 'blog:article_single' %}">تکنولوژی‌های نوظهور در دنیای اینترنت اشیاء</a></li>
+                    <li><a href="{% url 'blog:article_single' %}">آخرین روند‌ها در توسعه‌ی نرم‌افزارهای مبتنی بر هوش مصنوعی</a></li>
+                    <li><a href="{% url 'blog:article_single' %}">چالش‌ها و راهکارهای امنیت سایبری در دنیای ارتباطات هوشمند</a></li>
+                    <li><a href="{% url 'blog:article_single' %}">جهش‌های بزرگ در تکنولوژی‌های رایانه‌ای و شبکه‌های پرسرعت</a></li>
+                    <li><a href="{% url 'blog:article_single' %}">کاربردهای جدید فناوری بلاکچین در صنعت‌های مختلف</a></li>
                     <!-- Add more articles as needed-->
                 </ul>
             </div>
@@ -155,16 +155,16 @@ print("Factorial of", num, "is", calculate_factorial(num))</code></pre>
             <div class="card">
                 <h5 class="sidebar-card-title">برچسب‌ها</h5>
                 <ul class="tags-list">
-                    <li><a href="article-list.html">تکنولوژی</a></li>
-                    <li><a href="article-list.html">برنامه‌نویسی</a></li>
-                    <li><a href="article-list.html">شبکه‌ها</a></li>
-                    <li><a href="article-list.html">امنیت</a></li>
-                    <li><a href="article-list.html">هوش مصنوعی</a></li>
-                    <li><a href="article-list.html">انترنت اشیاء</a></li>
-                    <li><a href="article-list.html">اندروید</a></li>
-                    <li><a href="article-list.html">iOS</a></li>
-                    <li><a href="article-list.html">تجارت الکترونیک</a></li>
-                    <li><a href="article-list.html">بلاکچین</a></li>
+                    <li><a href="{% url 'blog:article_list' 'تکنولوژی' %}">تکنولوژی</a></li>
+                    <li><a href="{% url 'blog:article_list' 'برنامه‌نویسی' %}">برنامه‌نویسی</a></li>
+                    <li><a href="{% url 'blog:article_list' 'شبکه‌ها' %}">شبکه‌ها</a></li>
+                    <li><a href="{% url 'blog:article_list' 'امنیت' %}">امنیت</a></li>
+                    <li><a href="{% url 'blog:article_list' 'هوش مصنوعی' %}">هوش مصنوعی</a></li>
+                    <li><a href="{% url 'blog:article_list' 'انترنت اشیاء' %}">انترنت اشیاء</a></li>
+                    <li><a href="{% url 'blog:article_list' 'اندروید' %}">اندروید</a></li>
+                    <li><a href="{% url 'blog:article_list' 'iOS' %}">iOS</a></li>
+                    <li><a href="{% url 'blog:article_list' 'تجارت الکترونیک' %}">تجارت الکترونیک</a></li>
+                    <li><a href="{% url 'blog:article_list' 'بلاکچین' %}">بلاکچین</a></li>
                 </ul>
             </div>
         </aside>
