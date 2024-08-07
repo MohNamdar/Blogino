@@ -1,7 +1,8 @@
 {% extends 'parent/base.html' %}
 {% load jformat %}
+{% load blog_tags %}
 
-{% block title %}نوشته تک{% endblock %}
+{% block title %}{{ article.title }}{% endblock %}
 
 {% block head %}
     <!-- Document metadata-->
@@ -27,10 +28,10 @@
         <!-- Main content section-->
         <main>
             <!-- Breadcrumb navigation-->
-            <div class="breadcrumb"><a href="{% url 'blog:home' %}">خانه</a> &gt; <a
-                    href="{% url 'blog:article_list' article.get_category_display %}">{{ article.get_category_display }}</a>
-                &gt;
-                {{ article.title }}
+            <div class="breadcrumb"><a href="{% url 'blog:home' %}">خانه</a> > <a href="{% url 'blog:article_all' %}">مقالات</a>
+                > <a
+                        href="{% url 'blog:article_list' article.get_category_display %}">{{ article.get_category_display }}</a>
+                &gt; {{ article.title }}
             </div>
             <article class="card">
                 <!-- Article Content-->
@@ -135,16 +136,7 @@
             </div>
             <div class="card">
                 <h5 class="sidebar-card-title">دسته‌بندی‌ها</h5>
-                <ul>
-                    <li><a href="article-list.html">تکنولوژی</a></li>
-                    <li><a href="article-list.html">گجت‌ها</a></li>
-                    <li><a href="article-list.html">نرم‌افزار</a></li>
-                    <li><a href="article-list.html">هوش مصنوعی</a></li>
-                    <li><a href="article-list.html">اینترنت اشیاء (IoT)</a></li>
-                    <li><a href="article-list.html">امنیت اطلاعات</a></li>
-                    <li><a href="article-list.html">بلاک‌چین</a></li>
-                    <!-- Add more categories as needed-->
-                </ul>
+                {% category_list %}
             </div>
             <div class="card">
                 <h5 class="sidebar-card-title">سال‌های قبل در چنین روزی</h5>

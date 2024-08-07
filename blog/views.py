@@ -53,13 +53,16 @@ CATEGORY_MAP = {
 }
 
 
-def article_list(request, cat):
-    category_value = CATEGORY_MAP.get(cat)
+def article_list(request, cat=''):
+    if cat:
+        category_value = CATEGORY_MAP.get(cat)
 
-    if category_value:
-        articles = Article.objects.filter(category=category_value)
+        if category_value:
+            articles = Article.objects.filter(category=category_value)
+        else:
+            return redirect('blog:home')
     else:
-        return redirect('blog:home')
+        articles = Article.objects.all()
 
     context = {
         'category': cat,
