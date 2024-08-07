@@ -103,11 +103,14 @@
                 {% endfor %}
                 <div class="card">
                     <h4>ثبت نظر</h4>
-                    <form>
-                        <label for="username">نام کاربری:</label>
-                        <input type="text" id="username" required>
-                        <label for="comment">نظر شما:</label>
-                        <textarea id="comment" rows="4" required></textarea>
+                    {% if comment %}
+                        <div class="toast">
+                            <p>کامنت شما ثبت شد</p>
+                        </div>
+                    {% endif %}
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
                         <button type="submit">ارسال نظر</button>
                     </form>
                 </div>

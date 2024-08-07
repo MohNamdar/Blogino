@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-
+from blog.forms import *
 from blog.models import *
 
 
@@ -38,11 +38,21 @@ def about(request):
 
 
 def article_single(request, slug):
-    article = Article.objects.get(slug=slug)
+    article = get_object_or_404(Article, slug=slug)
     comments = article.comments.filter(active=True)
+    form = CommentForm()
+    comment = None
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.article = article
+            comment.save()
     context = {
         'article': article,
-        'comments': comments
+        'comments': comments,
+        'form': form,
+        'comment': comment
     }
     return render(request, 'blog/article_single.html', context)
 
