@@ -5,9 +5,13 @@ from django.template.defaultfilters import slugify
 from django.urls import reverse
 
 
+# Managers
+class ActiveManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(active=True)
+
+
 # Create your models here.
-
-
 class User(AbstractUser):
     bio = models.TextField(blank=True, null=True)
     profile = models.ImageField(upload_to="profiles", blank=True, null=True)
@@ -60,3 +64,25 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Comment(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="comments")
+    name = models.CharField(max_length=100)
+    message = models.TextField()
+    email = models.EmailField()
+    created = jmodels.jDateTimeField(auto_now_add=True)
+    updated = jmodels.jDateTimeField(auto_now=True)
+    active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['-created']
+        indexes = [
+            models.Index(fields=['-created'])
+        ]
+
+    objects = models.Manager()
+    actived = ActiveManager()
+
+    def __str__(self):
+        return f"{self.name} #{self.article}"

@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import Article, User, Tag
+from .models import *
 from django.contrib.auth.admin import UserAdmin
+from django_jalali.admin.filters import JDateFieldListFilter
 
 
 # Register your models here.
@@ -20,3 +21,12 @@ class UserAdmin(admin.ModelAdmin):
     fieldsets = UserAdmin.fieldsets + (
         ('Additional Information', {'fields': ('phone', 'bio', 'profile')}),
     )
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['name', 'article', 'created', 'active']
+    list_editable = ['active']
+    list_filter = ['name', 'article', ('created', JDateFieldListFilter)]
+    search_fields = ['article', 'message']
+    raw_id_fields = ['article']
