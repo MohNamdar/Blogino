@@ -15,3 +15,10 @@ def to_markdown(text):
 def category_list():
     choices = Article.Category.choices
     return {"categories": choices}
+
+
+@register.simple_tag()
+def article_counter(category=''):
+    if category:
+        return Article.objects.filter(category=category).count()
+    return Article.objects.all().count()

@@ -1,13 +1,7 @@
+{% load blog_tags %}
 <ul>
     {% for category in categories %}
-        <li><a href="{% url 'blog:article_list' category.1 %}">{{ category.1 }}</a></li>
-
-{#        <li><a href="{% url 'blog:article_list' 'تکنولوژی' %}">تکنولوژی</a></li>#}
-{#        <li><a href="{% url 'blog:article_list'  'گجت‌ها' %}">گجت‌ها</a></li>#}
-{#        <li><a href="{% url 'blog:article_list'  'نرم‌افزار' %}">نرم‌افزار</a></li>#}
-{#        <li><a href="{% url 'blog:article_list' 'هوش مصنوعی' %}">هوش مصنوعی</a></li>#}
-{#        <li><a href="{% url 'blog:article_list' 'اینترنت اشیاء (IoT)' %}">اینترنت اشیاء (IoT)</a></li>#}
-{#        <li><a href="{% url 'blog:article_list' 'امنیت اطلاعات' %}">امنیت اطلاعات</a></li>#}
-{#        <li><a href="{% url 'blog:article_list' 'بلاک‌چین' %}">بلاک‌چین</a></li>#}
+        <li><a href="{% url 'blog:article_list' category.1 %}">{{ category.1 }} ({% article_counter category.0 %})</a>
+        </li>
     {% endfor %}
 </ul>
