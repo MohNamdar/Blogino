@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -36,9 +37,13 @@ def article_single(request):
     return render(request, 'blog/article_single.html')
 
 
-def article_list(request):
-    return render(request, 'blog/article_list.html')
+def article_list(request, cat):
+    context = {
+        'cat': cat,
+    }
+    return render(request, 'blog/article_list.html', context)
 
 
 def faq(request):
     return render(request, 'blog/faq.html')
+

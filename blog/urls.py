@@ -11,8 +11,7 @@ urlpatterns = [
     path('podcast/', views.podcast_single, name='podcast_single'),
     path('contact/', views.contact, name='contact'),
     path('about/', views.about, name='about'),
-    path('article-list/', views.article_list, name='article_list'),
+    path('article-list/<str:cat>', views.article_list, name='article_list'),
     path('article/', views.article_single, name='article_single'),
     path('faq/', views.faq, name='faq'),
-
 ]
