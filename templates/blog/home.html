@@ -1,5 +1,7 @@
 {% extends 'parent/base.html' %}
 {% load static %}
+{% load jformat %}
+{% load blog_tags %}
 {% block title %}صفحه اصلی{% endblock %}
 
 {% block head %}
@@ -25,40 +27,19 @@
     <div class="container">
         <!-- Main content section-->
         <main>
-            <article class="card">
-                <!-- Article 1-->
-                <h2><a href="article-single.html">چگونگی بهینه‌سازی وب‌سایت</a></h2><img
-                    src="https://fakeimg.pl/800x300/5469a1/ffffff?text=Sample+image&amp;font=lobster" alt="تصویر مقاله">
-                <p>در این مقاله به بررسی روش‌های بهینه‌سازی وب‌سایت برای سرعت بیشتر، افزایش رتبه در نتایج جستجوی گوگل و
-                    بهبود تجربه کاربری پرداخته می‌شود.</p>
-                <!-- Date/Time & Comments Count Info-->
-                <p class="article-info">تاریخ انتشار: ۱۹ اسفند ۱۴۰۲ | ساعت ۳:۵۵ ب.ظ | ۱۷ نظر</p>
-            </article>
-            <article class="card">
-                <!-- Article 2-->
-                <h2><a href="article-single.html">راهکارهایی برای بهبود امنیت شبکه</a></h2>
-                <p>در این مقاله به بررسی راهکارهای مختلفی برای بهبود امنیت شبکه از جمله استفاده از فایروال، ابزارهای
-                    تشخیص تهدیدات، و کنترل دسترسی کاربران پرداخته می‌شود.</p>
-                <!-- Date/Time & Comments Count Info-->
-                <p class="article-info">تاریخ انتشار: ۱۹ اسفند ۱۴۰۲ | ساعت ۳:۵۵ ب.ظ | ۱۷ نظر</p>
-            </article>
-            <article class="card">
-                <!-- Article 3-->
-                <h2><a href="article-single.html">چگونگی کاهش هزینه‌های سرور با استفاده از تجزیه و تحلیل داده‌ها</a>
-                </h2>
-                <p>در این مقاله به بررسی نحوه استفاده از تجزیه و تحلیل داده‌ها برای کاهش هزینه‌های سرور و بهبود عملکرد
-                    سیستم پرداخته می‌شود.</p>
-                <!-- Date/Time & Comments Count Info-->
-                <p class="article-info">تاریخ انتشار: ۱۹ اسفند ۱۴۰۲ | ساعت ۳:۵۵ ب.ظ | ۱۷ نظر</p>
-            </article>
-            <article class="card">
-                <!-- Article 4-->
-                <h2><a href="article-single.html">تفاوت بین شبکه‌های اجتماعی محبوب در ایران</a></h2>
-                <p>در این مقاله به مقایسه شبکه‌های اجتماعی محبوب در ایران از جمله اینستاگرام، تلگرام، و توییتر پرداخته
-                    می‌شود و ویژگی‌ها، مزایا و معایب هر یک بررسی می‌شوند.</p>
-                <!-- Date/Time & Comments Count Info-->
-                <p class="article-info">تاریخ انتشار: ۱۹ اسفند ۱۴۰۲ | ساعت ۳:۵۵ ب.ظ | ۱۷ نظر</p>
-            </article>
+            <!-- Text Article -->
+            {% for article in articles %}
+                <article class="card">
+                    <h2><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h2><img
+                        src="{{ article.cover.url }}"
+                        alt="تصویر مقاله">
+                    <p>{{ article.content | truncatewords:20 }}</p>
+                    <!-- Date/Time & Comments Count Info-->
+                    <p class="article-info">تاریخ انتشار: {{ article.create_date | jformat:'%Y/%m/%d' }} |
+                        ساعت {{ article.create_date | jformat:'%H:%M' }} | ۱۷ نظر</p>
+                </article>
+            {% endfor %}
+
             <article class="card">
                 <!-- Article 5 - Audio-->
                 <h2><a href="article-single.html">آموزش برنامه‌نویسی Python</a></h2>
@@ -75,7 +56,7 @@
                 <!-- Article 6 - Video-->
                 <h2><a href="article-single.html">آشنایی با برنامه‌نویسی وب</a></h2>
                 <video controls>
-                    <source src="assets/media/sample_video.mp4" type="video/mp4">
+                    <source src="{% static 'media/sample_video.mp4' %}" type="video/mp4">
                     Your browser does not support the video element.
                 </video>
                 <p>در این مقاله به معرفی مفاهیم برنامه‌نویسی وب و استفاده از زبان‌های HTML، CSS و JavaScript برای ساخت
@@ -119,25 +100,20 @@ print("Factorial of", num, "is", calculate_factorial(num))</code></pre>
             </div>
             <div class="card">
                 <h5 class="sidebar-card-title">دسته‌بندی‌ها</h5>
-                <ul>
-                    <li><a href="{% url 'blog:article_list' 'تکنولوژی' %}">تکنولوژی</a></li>
-                    <li><a href="{% url 'blog:article_list'  'گجت‌ها' %}">گجت‌ها</a></li>
-                    <li><a href="{% url 'blog:article_list'  'نرم‌افزار' %}">نرم‌افزار</a></li>
-                    <li><a href="{% url 'blog:article_list' 'هوش مصنوعی' %}">هوش مصنوعی</a></li>
-                    <li><a href="{% url 'blog:article_list' 'اینترنت اشیاء (IoT)' %}">اینترنت اشیاء (IoT)</a></li>
-                    <li><a href="{% url 'blog:article_list' 'امنیت اطلاعات' %}">امنیت اطلاعات</a></li>
-                    <li><a href="{% url 'blog:article_list' 'بلاک‌چین' %}">بلاک‌چین</a></li>
-                    <!-- Add more categories as needed-->
-                </ul>
+                {% category_list %}
             </div>
             <div class="card">
                 <h5 class="sidebar-card-title">سال‌های قبل در چنین روزی</h5>
                 <ul>
-                    <li><a href="{% url 'blog:article_single' %}">تکنولوژی‌های نوظهور در دنیای اینترنت اشیاء</a></li>
-                    <li><a href="{% url 'blog:article_single' %}">آخرین روند‌ها در توسعه‌ی نرم‌افزارهای مبتنی بر هوش مصنوعی</a></li>
-                    <li><a href="{% url 'blog:article_single' %}">چالش‌ها و راهکارهای امنیت سایبری در دنیای ارتباطات هوشمند</a></li>
-                    <li><a href="{% url 'blog:article_single' %}">جهش‌های بزرگ در تکنولوژی‌های رایانه‌ای و شبکه‌های پرسرعت</a></li>
-                    <li><a href="{% url 'blog:article_single' %}">کاربردهای جدید فناوری بلاکچین در صنعت‌های مختلف</a></li>
+                    <li><a href="single_article.html">تکنولوژی‌های نوظهور در دنیای اینترنت اشیاء</a></li>
+                    <li><a href="single_article.html">آخرین روند‌ها در توسعه‌ی نرم‌افزارهای مبتنی بر هوش
+                        مصنوعی</a></li>
+                    <li><a href="single_article.html">چالش‌ها و راهکارهای امنیت سایبری در دنیای ارتباطات
+                        هوشمند</a></li>
+                    <li><a href="single_article.html">جهش‌های بزرگ در تکنولوژی‌های رایانه‌ای و شبکه‌های
+                        پرسرعت</a></li>
+                    <li><a href="single_article.html">کاربردهای جدید فناوری بلاکچین در صنعت‌های مختلف</a>
+                    </li>
                     <!-- Add more articles as needed-->
                 </ul>
             </div>

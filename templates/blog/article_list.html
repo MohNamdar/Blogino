@@ -1,4 +1,5 @@
 {% extends 'parent/base.html' %}
+{% load jformat %}
 
 {% block title %}نوشته‌های دسته‌بندی تکنولوژی{% endblock %}
 
@@ -27,86 +28,22 @@
         <main>
             <!-- Breadcrumb navigation-->
             <div class="breadcrumb"><a href="index.html">خانه</a> &gt; <a href="article-list.html">مقاله‌ها</a> &gt;
-                {{ cat }}
+                {{ category }}
             </div>
-            <article class="card">
-                <!-- Article 1-->
-                <h2><a href="article-single.html">چگونگی بهینه‌سازی وب‌سایت</a></h2><img
-                    src="https://fakeimg.pl/800x300/5469a1/ffffff?text=Sample+image&amp;font=lobster" alt="تصویر مقاله">
-                <p>در این مقاله به بررسی روش‌های بهینه‌سازی وب‌سایت برای سرعت بیشتر، افزایش رتبه در نتایج جستجوی گوگل و
-                    بهبود تجربه کاربری پرداخته می‌شود.</p>
-                <!-- Date/Time & Comments Count Info-->
-                <p class="article-info">تاریخ انتشار: ۱۹ اسفند ۱۴۰۲ | ساعت ۳:۵۵ ب.ظ | ۱۷ نظر</p>
-            </article>
-            <article class="card">
-                <!-- Article 2 - Audio-->
-                <h2><a href="article-single.html">آموزش برنامه‌نویسی Python</a></h2>
-                <audio controls>
-                    <source src="assets/media/beep.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-                <p>در این مقاله به آموزش برنامه‌نویسی با زبان Python و مباحث مختلف از جمله لیست‌ها، شرط‌ها و حلقه‌ها
-                    پرداخته می‌شود.</p>
-                <!-- Date/Time & Comments Count Info-->
-                <p class="article-info">تاریخ انتشار: ۱۹ اسفند ۱۴۰۲ | ساعت ۳:۵۵ ب.ظ | ۱۷ نظر</p>
-            </article>
-            <article class="card">
-                <!-- Article 3-->
-                <h2><a href="article-single.html">چگونگی کاهش هزینه‌های سرور با استفاده از تجزیه و تحلیل داده‌ها</a>
-                </h2>
-                <p>در این مقاله به بررسی نحوه استفاده از تجزیه و تحلیل داده‌ها برای کاهش هزینه‌های سرور و بهبود عملکرد
-                    سیستم پرداخته می‌شود.</p>
-                <!-- Date/Time & Comments Count Info-->
-                <p class="article-info">تاریخ انتشار: ۱۹ اسفند ۱۴۰۲ | ساعت ۳:۵۵ ب.ظ | ۱۷ نظر</p>
-            </article>
-            <article class="card">
-                <!-- Article 4-->
-                <h2><a href="article-single.html">تفاوت بین شبکه‌های اجتماعی محبوب در ایران</a></h2>
-                <p>در این مقاله به مقایسه شبکه‌های اجتماعی محبوب در ایران از جمله اینستاگرام، تلگرام، و توییتر پرداخته
-                    می‌شود و ویژگی‌ها، مزایا و معایب هر یک بررسی می‌شوند.</p>
-                <!-- Date/Time & Comments Count Info-->
-                <p class="article-info">تاریخ انتشار: ۱۹ اسفند ۱۴۰۲ | ساعت ۳:۵۵ ب.ظ | ۱۷ نظر</p>
-            </article>
-            <article class="card">
-                <!-- Article 2-->
-                <h2><a href="article-single.html">راهکارهایی برای بهبود امنیت شبکه</a></h2>
-                <p>در این مقاله به بررسی راهکارهای مختلفی برای بهبود امنیت شبکه از جمله استفاده از فایروال، ابزارهای
-                    تشخیص تهدیدات، و کنترل دسترسی کاربران پرداخته می‌شود.</p>
-                <!-- Date/Time & Comments Count Info-->
-                <p class="article-info">تاریخ انتشار: ۱۹ اسفند ۱۴۰۲ | ساعت ۳:۵۵ ب.ظ | ۱۷ نظر</p>
-            </article>
-            <article class="card">
-                <!-- Article 6 - Video-->
-                <h2><a href="article-single.html">آشنایی با برنامه‌نویسی وب</a></h2>
-                <video controls>
-                    <source src="assets/media/sample_video.mp4" type="video/mp4">
-                    Your browser does not support the video element.
-                </video>
-                <p>در این مقاله به معرفی مفاهیم برنامه‌نویسی وب و استفاده از زبان‌های HTML، CSS و JavaScript برای ساخت
-                    صفحات وب پرداخته می‌شود.</p>
-                <!-- Date/Time & Comments Count Info-->
-                <p class="article-info">تاریخ انتشار: ۱۹ اسفند ۱۴۰۲ | ساعت ۳:۵۵ ب.ظ | ۱۷ نظر</p>
-            </article>
-            <article class="card">
-                <!-- Article 7 - Code Block-->
-                <h2><a href="article-single.html">آشنایی با توابع در Python</a></h2>
-                <p>در این مقاله به آشنایی با توابع در زبان برنامه‌نویسی Python پرداخته می‌شود. در ادامه، یک نمونه کد
-                    Python ارائه می‌شود:</p>
-                <pre class="language-python"><code>  
-  def calculate_factorial(n):
-      if n == 0:
-            return 1
-       else:
-            return n * calculate_factorial(n-1)
-  
-  num = 5
-  print("Factorial of", num, "is", calculate_factorial(num))
 
+            <!-- Articles-->
+            {% for article in articles %}
+                <article class="card">
+                    <h2><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h2><img
+                        src="{{ article.cover.url }}"
+                        alt="تصویر مقاله">
+                    <p>{{ article.content | truncatewords:20 }}</p>
+                    <!-- Date/Time & Comments Count Info-->
+                    <p class="article-info">تاریخ انتشار: {{ article.create_date | jformat:'%Y/%m/%d' }} |
+                        ساعت {{ article.create_date | jformat:'%H:%M' }} | ۱۷ نظر</p>
+                </article>
+            {% endfor %}
 
-</code></pre>
-                <!-- Date/Time & Comments Count Info-->
-                <p class="article-info">تاریخ انتشار: ۱۹ اسفند ۱۴۰۲ | ساعت ۳:۵۵ ب.ظ | ۱۷ نظر</p>
-            </article>
             <!-- Pagination row-->
             <div class="pagination"><a class="page-link" href="#">قبلی</a><a class="page-link active" href="#">1</a><a
                     class="page-link" href="#">2</a>...<a class="page-link" href="#">23</a><a class="page-link"

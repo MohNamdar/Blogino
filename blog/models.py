@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django_jalali.db import models as jmodels
 from django.template.defaultfilters import slugify
+from django.urls import reverse
 
 
 # Create your models here.
@@ -15,12 +16,12 @@ class User(AbstractUser):
 
 class Article(models.Model):
     class Category(models.TextChoices):
-        technology = 'TCH', 'تکنولوژی'
-        programming = 'PRG', 'برنامه نویسی'
-        ai = 'AI', 'هوش مصنوعی'
-        security = 'SEC', 'امنیت'
-        podcast = 'PDC', 'پادکست'
-        videocast = 'VDC', 'ویدئوکست'
+        AI = 'AI', 'هوش مصنوعی'
+        TECHNOLOGY = 'TCH', 'تکنولوژی'
+        PROGRAMMING = 'PRG', 'برنامه نویسی'
+        SECURITY = 'SEC', 'امنیت'
+        PODCAST = 'PDC', 'پادکست'
+        VIDEOCAST = 'VDC', 'ویدئوکست'
 
     title = models.CharField(max_length=250)
     cover = models.ImageField(upload_to="cover", blank=True, null=True)
@@ -29,7 +30,7 @@ class Article(models.Model):
     create_date = jmodels.jDateTimeField(auto_now_add=True)
     update_date = jmodels.jDateTimeField(auto_now=True)
     slug = models.SlugField(max_length=250, unique=True)
-    category = models.CharField(choices=Category.choices, max_length=3, default=Category.technology)
+    category = models.CharField(choices=Category.choices, max_length=3, default=Category.TECHNOLOGY)
 
     def __str__(self):
         return self.title
@@ -43,4 +44,5 @@ class Article(models.Model):
             self.slug = slugify(self.title)
         super().save(*args, **kwargs)
 
-        o
+    def get_absolute_url(self):
+        return reverse("blog:article_single", kwargs={'slug': self.slug})

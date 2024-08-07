@@ -1,12 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+
+from blog.models import Article
 
 
 # Create your views here.
 
 
 def home(request):
-    return render(request, 'blog/home.html')
+    articles = Article.objects.all()
+    context = {'articles': articles}
+    return render(request, 'blog/home.html', context)
 
 
 def gallery(request):
@@ -33,17 +37,37 @@ def about(request):
     return render(request, 'blog/about.html')
 
 
-def article_single(request):
-    return render(request, 'blog/article_single.html')
+def article_single(request, slug):
+    article = Article.objects.get(slug=slug)
+    context = {'article': article}
+    return render(request, 'blog/article_single.html', context)
+
+
+CATEGORY_MAP = {
+    'هوش مصنوعی': 'AI',
+    'تکنولوژی': 'TCH',
+    'برنامه نویسی': 'PRG',
+    'امنیت': 'SEC',
+    'پادکست': 'PDC',
+    'ویدئوکست': 'VDC',
+}
 
 
 def article_list(request, cat):
+    category_value = CATEGORY_MAP.get(cat)
+
+    if category_value:
+        articles = Article.objects.filter(category=category_value)
+    else:
+        return redirect('blog:home')
+
     context = {
-        'cat': cat,
+        'category': cat,
+        'articles': articles
     }
+
     return render(request, 'blog/article_list.html', context)
 
 
 def faq(request):
     return render(request, 'blog/faq.html')
-
