@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
-from blog.models import Article
+from blog.models import *
 
 
 # Create your views here.
@@ -39,7 +39,11 @@ def about(request):
 
 def article_single(request, slug):
     article = Article.objects.get(slug=slug)
-    context = {'article': article}
+    comments = article.comments.filter(active=True)
+    context = {
+        'article': article,
+        'comments': comments
+    }
     return render(request, 'blog/article_single.html', context)
 
 

@@ -5,12 +5,6 @@ from django.template.defaultfilters import slugify
 from django.urls import reverse
 
 
-# Managers
-class ActiveManager(models.Manager):
-    def get_queryset(self):
-        return super().get_queryset().filter(active=True)
-
-
 # Create your models here.
 class User(AbstractUser):
     bio = models.TextField(blank=True, null=True)
@@ -80,9 +74,6 @@ class Comment(models.Model):
         indexes = [
             models.Index(fields=['-created'])
         ]
-
-    objects = models.Manager()
-    actived = ActiveManager()
 
     def __str__(self):
         return f"{self.name} #{self.article}"
