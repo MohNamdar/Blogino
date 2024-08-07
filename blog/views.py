@@ -7,8 +7,6 @@ from datetime import datetime
 
 
 # Create your views here.
-
-
 def home(request):
     articles = Article.objects.all()
     today = datetime.today()
@@ -29,10 +27,6 @@ def home(request):
 
 def gallery(request):
     return render(request, 'blog/gallery.html')
-
-
-def page(request):
-    return render(request, 'blog/page.html')
 
 
 def podcast_single(request):
@@ -109,7 +103,3 @@ def tag_list(request, tag):
     }
 
     return render(request, 'blog/tag_list.html', context)
-
-
-def faq(request):
-    return render(request, 'blog/faq.html')
