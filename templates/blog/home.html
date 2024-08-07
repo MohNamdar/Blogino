@@ -36,7 +36,7 @@
                     <p>{{ article.content | truncatewords:20 }}</p>
                     <!-- Date/Time & Comments Count Info-->
                     <p class="article-info">تاریخ انتشار: {{ article.create_date | jformat:'%Y/%m/%d' }} |
-                        ساعت {{ article.create_date | jformat:'%H:%M' }} | ۱۷ نظر</p>
+                        ساعت {{ article.create_date | jformat:'%H:%M' }} | {{ article.comments.count }} نظر</p>
                 </article>
             {% endfor %}
 
