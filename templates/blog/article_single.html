@@ -44,12 +44,11 @@
                 <div class="article-tags">
                     <h5>برچسب‌ها:</h5>
                     <ul class="tags-list">
-                        <li><a href="#">تکنولوژی</a></li>
-                        <li><a href="#">برنامه‌نویسی وب</a></li>
-                        <li><a href="#">HTML</a></li>
-                        <li><a href="#">CSS</a></li>
-                        <li><a href="#">JavaScript</a></li>
+                        {% for tag in article.tags.all %}
+                            <li><a href="#">{{ tag.name }}</a></li>
+                        {% endfor %}
                     </ul>
+
                 </div>
                 <!-- Share Buttons-->
                 <div class="share-buttons">
@@ -157,22 +156,6 @@
                     <li><a href="#">گفت‌و‌گو با دیزاینر UI/UX درباره آخرین ترند‌های طراحی وب</a></li>
                     <li><a href="#">مصاحبه با دانشمند داده‌ها در مورد تحلیل‌های پیشرفته</a></li>
                     <!-- Add more conversations as needed-->
-                </ul>
-            </div>
-            <!-- Tags Section-->
-            <div class="card">
-                <h5 class="sidebar-card-title">برچسب‌ها</h5>
-                <ul class="tags-list">
-                    <li><a href="article-list.html">تکنولوژی</a></li>
-                    <li><a href="article-list.html">برنامه‌نویسی</a></li>
-                    <li><a href="article-list.html">شبکه‌ها</a></li>
-                    <li><a href="article-list.html">امنیت</a></li>
-                    <li><a href="article-list.html">هوش مصنوعی</a></li>
-                    <li><a href="article-list.html">انترنت اشیاء</a></li>
-                    <li><a href="article-list.html">اندروید</a></li>
-                    <li><a href="article-list.html">iOS</a></li>
-                    <li><a href="article-list.html">تجارت الکترونیک</a></li>
-                    <li><a href="article-list.html">بلاکچین</a></li>
                 </ul>
             </div>
         </aside>
