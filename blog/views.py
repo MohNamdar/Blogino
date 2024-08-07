@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from blog.forms import *
 from blog.models import *
+import requests
+from datetime import datetime
 
 
 # Create your views here.
@@ -9,7 +11,19 @@ from blog.models import *
 
 def home(request):
     articles = Article.objects.all()
-    context = {'articles': articles}
+    today = datetime.today()
+    url = f'https://holidayapi.ir/gregorian/{today.year}/{today.month}/{today.day}'
+    response = requests.get(url)
+    data = response.json()
+    events = []
+    for event in data['events']:
+        events.append(event['description'])
+
+    context = {
+        'articles': articles,
+        'events': events
+    }
+
     return render(request, 'blog/home.html', context)
 
 

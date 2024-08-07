@@ -63,18 +63,12 @@
                 {% category_list %}
             </div>
             <div class="card">
-                <h5 class="sidebar-card-title">سال‌های قبل در چنین روزی</h5>
+                <h5 class="sidebar-card-title">درچنین روزی:</h5>
                 <ul>
-                    <li><a href="single_article.html">تکنولوژی‌های نوظهور در دنیای اینترنت اشیاء</a></li>
-                    <li><a href="single_article.html">آخرین روند‌ها در توسعه‌ی نرم‌افزارهای مبتنی بر هوش
-                        مصنوعی</a></li>
-                    <li><a href="single_article.html">چالش‌ها و راهکارهای امنیت سایبری در دنیای ارتباطات
-                        هوشمند</a></li>
-                    <li><a href="single_article.html">جهش‌های بزرگ در تکنولوژی‌های رایانه‌ای و شبکه‌های
-                        پرسرعت</a></li>
-                    <li><a href="single_article.html">کاربردهای جدید فناوری بلاکچین در صنعت‌های مختلف</a>
-                    </li>
-                    <!-- Add more articles as needed-->
+                    {% for event in events %}
+                        <li>{{ event }}</li>
+                        <hr>
+                    {% endfor %}
                 </ul>
             </div>
             <div class="card">
