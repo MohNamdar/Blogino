@@ -5,11 +5,12 @@ from blog.models import *
 import requests
 from datetime import datetime
 
+PAGINATION_PER_PAGE = 5
 
 # Create your views here.
 def home(request):
     articles = Article.objects.all()
-    paginator = Paginator(articles, 1)
+    paginator = Paginator(articles, PAGINATION_PER_PAGE)
     page_number = request.GET.get('page', 1)
     try:
         page_obj = paginator.page(page_number)
@@ -95,7 +96,7 @@ def article_list(request, cat=''):
     else:
         articles = Article.objects.all()
 
-    paginator = Paginator(articles, 1)
+    paginator = Paginator(articles, PAGINATION_PER_PAGE)
     page_number = request.GET.get('page', 1)
     try:
         page_obj = paginator.page(page_number)
@@ -115,7 +116,7 @@ def article_list(request, cat=''):
 def tag_list(request, tag):
     tag = get_object_or_404(Tag, name=tag)
     articles = Article.objects.filter(tags=tag)
-    paginator = Paginator(articles, 1)
+    paginator = Paginator(articles, PAGINATION_PER_PAGE)
     page_number = request.GET.get('page', 1)
     try:
         page_obj = paginator.page(page_number)
