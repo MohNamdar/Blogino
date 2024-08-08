@@ -6,6 +6,14 @@ import requests
 from datetime import datetime
 
 PAGINATION_PER_PAGE = 5
+CATEGORY_MAP = {
+    'هوش مصنوعی': 'AI',
+    'تکنولوژی': 'TCH',
+    'برنامه نویسی': 'PRG',
+    'امنیت': 'SEC',
+    'روزانه': 'DAY'
+}
+
 
 # Create your views here.
 def home(request):
@@ -43,8 +51,32 @@ def podcast_single(request):
     return render(request, 'blog/podcast_single.html')
 
 
-def podcast_list(request):
-    return render(request, 'blog/podcast_list.html')
+def podcast_list(request, cat=''):
+    if cat:
+        category_value = CATEGORY_MAP.get(cat)
+
+        if category_value:
+            podcasts = Podcast.objects.filter(category=category_value)
+        else:
+            return redirect('blog:home')
+    else:
+        podcasts = Podcast.objects.all()
+
+    paginator = Paginator(podcasts, PAGINATION_PER_PAGE)
+    page_number = request.GET.get('page', 1)
+    try:
+        page_obj = paginator.page(page_number)
+    except PageNotAnInteger:
+        raise PageNotAnInteger
+    except EmptyPage:
+        raise EmptyPage
+
+    context = {
+        'page_obj': page_obj,
+        'category': cat,
+    }
+
+    return render(request, 'blog/podcast_list.html', context)
 
 
 def contact(request):
@@ -73,16 +105,6 @@ def article_single(request, slug):
         'comment': comment
     }
     return render(request, 'blog/article_single.html', context)
-
-
-CATEGORY_MAP = {
-    'هوش مصنوعی': 'AI',
-    'تکنولوژی': 'TCH',
-    'برنامه نویسی': 'PRG',
-    'امنیت': 'SEC',
-    'پادکست': 'PDC',
-    'ویدئوکست': 'VDC',
-}
 
 
 def article_list(request, cat=''):

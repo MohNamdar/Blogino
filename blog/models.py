@@ -18,8 +18,7 @@ class Article(models.Model):
         TECHNOLOGY = 'TCH', 'تکنولوژی'
         PROGRAMMING = 'PRG', 'برنامه نویسی'
         SECURITY = 'SEC', 'امنیت'
-        PODCAST = 'PDC', 'پادکست'
-        VIDEOCAST = 'VDC', 'ویدئوکست'
+        DAILY = 'DAY', 'روزانه'
 
     title = models.CharField(max_length=250)
     cover = models.ImageField(upload_to="cover", blank=True, null=True)
