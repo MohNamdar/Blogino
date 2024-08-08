@@ -38,7 +38,7 @@
                 <h1><a href="#">{{ article.title }}</a></h1><img
                     src="{{ article.cover.url }}" alt="تصویر مقاله">
                 <section>
-                    {{ article.content }}
+                    {{ article.content | markdown}}
                 </section>
                 <!-- Article Tags-->
                 <div class="article-tags">

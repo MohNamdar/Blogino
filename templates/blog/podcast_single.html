@@ -43,7 +43,7 @@
                     Your browser does not support the audio element.
                 </audio>
                 <section>
-                    {{ podcast.content }}
+                    {{ podcast.content | markdown}}
                 </section>
                 <div class="podcast-buttons">
                     {% if podcast.castbox_link %}
