@@ -15,6 +15,11 @@ class ArticleAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'category')
 
 
+@admin.register(Image)
+class ArticleAdmin(admin.ModelAdmin):
+    list_display = ('title', 'author', 'created')
+
+
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
     list_display = ['name']

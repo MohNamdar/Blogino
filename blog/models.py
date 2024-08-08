@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from django_jalali.db import models as jmodels
 from django.template.defaultfilters import slugify
 from django.urls import reverse
+from datetime import datetime
 
 
 # Create your models here.
@@ -121,7 +122,7 @@ class Image(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250, unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='images')
-    image_file = models.ImageField(upload_to="images")
+    image_file = models.ImageField(upload_to=f"images/{datetime.now().year}/{datetime.now().month}/")
     created = jmodels.jDateTimeField(auto_now_add=True)
 
     class Meta:
