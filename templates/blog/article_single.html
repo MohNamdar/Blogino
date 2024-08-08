@@ -56,17 +56,17 @@
             </article>
             <!-- Related Articles-->
             <section class="related-articles">
-                <h3>نوشته‌های مشاب</h3>
-                <article class="related-article card">
-                    <h3><a href="#">آموزش پیشرفته CSS</a></h3>
-                    <p>در این مقاله به تکنیک‌ها و ترفندهای پیشرفته در CSS پرداخته می‌شود...</p>
-                </article>
-                <article class="related-article card">
-                    <h3><a href="#">آشنایی با جدیدترین ویژگی‌های HTML5</a></h3>
-                    <p>در این مقاله به ویژگی‌های جدید و مهم HTML5 می‌پردازیم...</p>
-                </article>
-                <!-- Add more related articles as needed-->
+                <h3>آخرین مقالات</h3>
+
+                {% last_articles as la %}
+                {% for a in la %}
+                    <article class="related-article card">
+                        <h3><a href="{{ a.get_absolute_url }}">{{ a.title}}</a></h3>
+                        <p>{{ a.content | truncatewords:10 }}</p>
+                    </article>
+                {% endfor %}
             </section>
+
 
             <!-- Comments Section-->
             <div class="comments-section">

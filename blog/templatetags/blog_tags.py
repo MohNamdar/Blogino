@@ -29,3 +29,9 @@ def tags_list(count=0):
     if count:
         return {'tags': Tag.objects.all()[:count]}
     return {'tags': Tag.objects.all()}
+
+
+@register.simple_tag()
+def last_articles(count=3):
+    articles = Article.objects.all().order_by('-update_date')[:count]
+    return articles
