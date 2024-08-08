@@ -10,6 +10,11 @@ class ArticleAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'category')
 
 
+@admin.register(Podcast)
+class ArticleAdmin(admin.ModelAdmin):
+    list_display = ('title', 'author', 'category')
+
+
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
     list_display = ['name']
