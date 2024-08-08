@@ -77,6 +77,9 @@ class Podcast(models.Model):
     slug = models.SlugField(max_length=250, unique=True)
     category = models.CharField(choices=Category.choices, max_length=3, default=Category.TECHNOLOGY)
     tags = models.ManyToManyField('Tag', related_name='podcasts', blank=True)
+    castbox_link = models.URLField(blank=True, null=True)
+    google_podcast_link = models.URLField(blank=True, null=True)
+    apple_podcast_link = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return self.title
