@@ -1,4 +1,6 @@
 {% extends 'parent/base.html' %}
+{% load jformat %}
+{% load blog_tags %}
 
 {% block title %}صفحه پادکست{% endblock %}
 
@@ -26,93 +28,63 @@
         <!-- Main content section-->
         <main>
             <!-- Breadcrumb navigation-->
-            <div class="breadcrumb"><a href="index.html">خانه</a> &gt; <a href="podcast-list.html">پادکست</a> &gt;
-                اپیزودهای دسته‌بندی تکنولوژی
+            <div class="breadcrumb"><a href="{% url 'blog:home' %}">خانه</a> &gt; <a
+                    href="{% url 'blog:podcast_list' %}">پادکست</a> &gt;
+                اپیزودهای {{ category }}
             </div>
             <section class="card">
-                <h2>پادکست تازه‌های تکنولوژی</h2>
+                <h2>آخرین پادکست های ما</h2>
                 <div class="about-text">
-                    <p><img class="about-photo" src="https://via.placeholder.com/200" alt="تصویر نمایه"> به پادکست
-                        "تازه‌های تکنولوژی" خوش آمدید! در این پادکست، به بررسی و بحث درباره آخرین اخبار و تحولات جهان
-                        فناوری می‌پردازیم. از تازه‌ترین دستاوردهای علمی تا لحظه‌ی عرضه‌ی دستگاه‌ها و خدمات جدید، همه چیز
-                        را درباره دنیای فناوری در این پادکست خواهید شنید. با ما همراه شوید و به دنیایی پر از نوآوری و
-                        تحولات عجیب و جذاب سفر کنید.</p>
-                    <p> با گسترش روزافزون فناوری در تمامی جوانب زندگی، پادکست "تازه‌های تکنولوژی" تصمیم گرفته است تا به
-                        شما تجربه‌ای جامع و البته سرگرم‌کننده از اخبار تکنولوژی ارائه دهد. از مبتکران ویژه‌ای که با
-                        ابداعاتشان دنیای فناوری را شکل می‌دهند تا تحلیل‌های عمیق در مورد اثرات اجتماعی و اقتصادی
-                        تکنولوژی، ما همه جنبه‌های این دنیای پویا را روایت می‌کنیم. هدف ما از این پادکست، به اشتراک
-                        گذاشتن اطلاعاتی است که به شما کمک می‌کند تا درک بهتری از چگونگی تأثیر تکنولوژی بر جامعه و زندگی
-                        روزمره پیدا کنید.</p>
-                    <div class="podcast-buttons"><a class="castbox" href="#" target="_blank"><i
-                            class="fa-solid fa-circle-play"></i> اشتراک در کست‌باکس</a><a class="google-podcast"
-                                                                                          href="#" target="_blank"><i
-                            class="fab fa-google"></i> اشتراک در گوگل پادکست</a><a class="apple-podcast" href="#"
-                                                                                   target="_blank"><i
-                            class="fab fa-apple"></i> اشتراک در اپل پادکست</a><a class="spotify" href="#"
-                                                                                 target="_blank"><i
-                            class="fab fa-spotify"></i> اشتراک در اسپاتیفای</a></div>
+                    <p><img class="about-photo" src="https://via.placeholder.com/200" alt="تصویر نمایه">آخرین پادکست های
+                        مارو میتونید از طریق پلتفرم های زیر دنبال کنید</p>
+                    <br> <br>
+                    <div class="podcast-buttons">
+                        <a class="castbox" href="#" target="_blank"><i class="fa-solid fa-circle-play"></i> کست باکس</a>
+                        <a class="google-podcast" href="#" target="_blank"><i class="fab fa-google"></i> گوگل پادکست</a>
+                        <a class="apple-podcast" href="#" target="_blank"><i class="fab fa-apple"></i> اپل پادکست</a>
+                        <a class="spotify" href="#" target="_blank"><i class="fab fa-spotify"></i> اسپاتیفای</a>
+                    </div>
                 </div>
             </section>
-            <article class="card">
-                <h2><a href="podcast-single.html">قسمت ۱: چالش‌ها و راهکارهای حفاظت از اطلاعات شخصی در دنیای دیجیتال</a>
-                </h2><img src="https://fakeimg.pl/800x200/5469a1/ffffff?text=Episode%201&amp;font=lobster"
-                          alt="تصویر قسمت ۱">
-                <audio controls>
-                    <source src="assets/media/beep.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-                <p> در این قسمت به بحث در مورد تکنولوژی X و چگونگی استفاده از آن پرداخته می‌شود.</p>
-                <div class="podcast-buttons"><a href="#" target="_blank">گوش دادن در اسپاتیفای</a><a href="#"
-                                                                                                     target="_blank">گوش
-                    دادن در گوگل پادکست</a><a href="#" target="_blank">گوش دادن در اپل پادکست</a><a href="#"
-                                                                                                    target="_blank">گوش
-                    دادن در کست‌باکس</a></div>
-                <!-- Date/Time & Comments Count Info-->
-                <p class="article-info">تاریخ انتشار: ۱۹ اسفند ۱۴۰۲ | ساعت ۳:۵۵ ب.ظ | ۱۷ نظر</p>
-            </article>
-            <article class="card">
-                <h2><a href="podcast-single.html">قسمت ۲: عنوان قسمت</a></h2><img
-                    src="https://fakeimg.pl/800x200/5469a1/ffffff?text=Episode%202&amp;font=lobster" alt="تصویر قسمت ۲">
-                <audio controls>
-                    <source src="assets/media/beep.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-                <p> در این قسمت به بحث در مورد تکنولوژی Y و نقش آن در جامعه پرداخته می‌شود.</p>
-                <div class="podcast-buttons"><a href="#" target="_blank">گوش دادن در اسپاتیفای</a><a href="#"
-                                                                                                     target="_blank">گوش
-                    دادن در گوگل پادکست</a><a href="#" target="_blank">گوش دادن در اپل پادکست</a><a href="#"
-                                                                                                    target="_blank">گوش
-                    دادن در کست‌باکس</a></div>
-                <!-- Date/Time & Comments Count Info-->
-                <p class="article-info">تاریخ انتشار: ۱۹ اسفند ۱۴۰۲ | ساعت ۳:۵۵ ب.ظ | ۱۷ نظر</p>
-            </article>
-            <article class="card">
-                <h2><a href="podcast-single.html">قسمت ۳: عنوان قسمت</a></h2><img
-                    src="https://fakeimg.pl/800x200/5469a1/ffffff?text=Episode%203&amp;font=lobster" alt="تصویر قسمت ۳">
-                <audio controls>
-                    <source src="assets/media/beep.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-                <p> در این قسمت به بحث در مورد تکنولوژی Z و چالش‌های پیش روی آن پرداخته می‌شود.</p>
-                <div class="podcast-buttons"><a href="#" target="_blank">گوش دادن در اسپاتیفای</a><a href="#"
-                                                                                                     target="_blank">گوش
-                    دادن در گوگل پادکست</a><a href="#" target="_blank">گوش دادن در اپل پادکست</a><a href="#"
-                                                                                                    target="_blank">گوش
-                    دادن در کست‌باکس</a></div>
-                <!-- Date/Time & Comments Count Info-->
-                <p class="article-info">تاریخ انتشار: ۱۹ اسفند ۱۴۰۲ | ساعت ۳:۵۵ ب.ظ | ۱۷ نظر</p>
-            </article>
-            <!-- Pagination row-->
-            <div class="pagination"><a class="page-link" href="#">قبلی</a><a class="page-link active" href="#">1</a><a
-                    class="page-link" href="#">2</a>...<a class="page-link" href="#">23</a><a class="page-link"
-                                                                                              href="#">24</a><a
-                    class="page-link" href="#">بعدی</a></div>
+            {% for pod in page_obj %}
+                <article class="card">
+                    <h2><a href="{{ pod.get_absulute_url }}">{{ pod.title }}</a>
+                    </h2><img src="{{ pod.cover.url }}"
+                              alt="تصویر پادکست">
+                    <audio controls>
+                        <source src="{{ pod.audio.url }}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <p>{{ pod.content | truncatewords:7 }}</p>
+                    <div class="podcast-buttons">
+                        {% if pod.castbox_link %}
+                            <a href="#" target="_blank">گوش دادن در کست‌باکس</a>
+                        {% endif %}
+                        {% if pod.apple_podcast_link %}
+                            <a href="#" target="_blank">گوش دادن در اپل پادکست</a>
+                        {% endif %}
+                        {% if pod.google_podcasat_link %}
+                            <a href="#" target="_blank">گوش دادن در گوگل پادکست</a>
+                        {% endif %}
+
+                    </div>
+                    <!-- Date/Time & Comments Count Info-->
+                    <p class="article-info">تاریخ انتشار: {{ article.create_date | jformat:'%Y/%m/%d' }} |
+                        ساعت {{ article.create_date | jformat:'%H:%M' }} | {{ article.comments.count }}
+                        <نظر></نظر>
+                    </p>
+                </article>
+            {% endfor %}
+
+
+            {% include 'partials/pagination.html' %}
+
         </main>
         <!-- Sidebar-->
         <aside class="sidebar">
             <!-- Social media boxes-->
             {% include 'partials/social_link_sidebar.html' %}
-            
+
             <div class="card">
                 <form method="get" action="#">
                     <input type="text" placeholder="جستجوی نوشته‌ها...">
@@ -121,53 +93,14 @@
             </div>
             <div class="card">
                 <h5 class="sidebar-card-title">دسته‌بندی‌ها</h5>
-                <ul>
-                    <li><a href="article-list.html">تکنولوژی</a></li>
-                    <li><a href="article-list.html">گجت‌ها</a></li>
-                    <li><a href="article-list.html">نرم‌افزار</a></li>
-                    <li><a href="article-list.html">هوش مصنوعی</a></li>
-                    <li><a href="article-list.html">اینترنت اشیاء (IoT)</a></li>
-                    <li><a href="article-list.html">امنیت اطلاعات</a></li>
-                    <li><a href="article-list.html">بلاک‌چین</a></li>
-                    <!-- Add more categories as needed-->
-                </ul>
+                {% category_list %}
             </div>
-            <div class="card">
-                <h5 class="sidebar-card-title">سال‌های قبل در چنین روزی</h5>
-                <ul>
-                    <li><a href="article-single.html">تکنولوژی‌های نوظهور در دنیای اینترنت اشیاء</a></li>
-                    <li><a href="article-single.html">آخرین روند‌ها در توسعه‌ی نرم‌افزارهای مبتنی بر هوش مصنوعی</a></li>
-                    <li><a href="article-single.html">چالش‌ها و راهکارهای امنیت سایبری در دنیای ارتباطات هوشمند</a></li>
-                    <li><a href="article-single.html">جهش‌های بزرگ در تکنولوژی‌های رایانه‌ای و شبکه‌های پرسرعت</a></li>
-                    <li><a href="article-single.html">کاربردهای جدید فناوری بلاکچین در صنعت‌های مختلف</a></li>
-                    <!-- Add more articles as needed-->
-                </ul>
-            </div>
-            <div class="card">
-                <h5 class="sidebar-card-title">آخرین گفتگوهای من</h5>
-                <ul>
-                    <li><a href="#">گفت‌و‌گو با مهندس نرم‌افزار درباره آینده‌ی هوش مصنوعی</a></li>
-                    <li><a href="#">مصاحبه با مخترع اینترنت اشیاء در مورد ارتباطات هوشمند</a></li>
-                    <li><a href="#">گفت‌و‌گو با دیزاینر UI/UX درباره آخرین ترند‌های طراحی وب</a></li>
-                    <li><a href="#">مصاحبه با دانشمند داده‌ها در مورد تحلیل‌های پیشرفته</a></li>
-                    <!-- Add more conversations as needed-->
-                </ul>
-            </div>
+            
             <!-- Tags Section-->
             <div class="card">
                 <h5 class="sidebar-card-title">برچسب‌ها</h5>
-                <ul class="tags-list">
-                    <li><a href="article-list.html">تکنولوژی</a></li>
-                    <li><a href="article-list.html">برنامه‌نویسی</a></li>
-                    <li><a href="article-list.html">شبکه‌ها</a></li>
-                    <li><a href="article-list.html">امنیت</a></li>
-                    <li><a href="article-list.html">هوش مصنوعی</a></li>
-                    <li><a href="article-list.html">انترنت اشیاء</a></li>
-                    <li><a href="article-list.html">اندروید</a></li>
-                    <li><a href="article-list.html">iOS</a></li>
-                    <li><a href="article-list.html">تجارت الکترونیک</a></li>
-                    <li><a href="article-list.html">بلاکچین</a></li>
-                </ul>
+                {% tags_list %}
+                
             </div>
         </aside>
     </div>

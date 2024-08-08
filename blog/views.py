@@ -61,6 +61,7 @@ def podcast_list(request, cat=''):
             return redirect('blog:home')
     else:
         podcasts = Podcast.objects.all()
+        cat = 'همه پادکست ها'
 
     paginator = Paginator(podcasts, PAGINATION_PER_PAGE)
     page_number = request.GET.get('page', 1)
