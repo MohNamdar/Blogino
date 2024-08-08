@@ -110,10 +110,6 @@ def podcast_list(request, cat=''):
     return render(request, 'blog/podcast_list.html', context)
 
 
-def contact(request):
-    return render(request, 'blog/contact.html')
-
-
 def about(request):
     return render(request, 'blog/about.html')
 

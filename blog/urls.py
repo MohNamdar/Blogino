@@ -8,7 +8,6 @@ urlpatterns = [
     path('gallery/', views.gallery, name='gallery'),
     path('podcast-list/', views.podcast_list, name='podcast_list'),
     path('podcast/<slug>', views.podcast_single, name='podcast_single'),
-    path('contact/', views.contact, name='contact'),
     path('about/', views.about, name='about'),
     path('article-list/', views.article_list, name='article_all'),
     path('article-list/<str:cat>', views.article_list, name='article_list'),
