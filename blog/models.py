@@ -119,8 +119,7 @@ class Comment(models.Model):
 
 
 class Image(models.Model):
-    title = models.CharField(max_length=250)
-    slug = models.SlugField(max_length=250, unique=True)
+    title = models.CharField(max_length=250, null=True, blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='images')
     image_file = models.ImageField(upload_to=f"images/{datetime.now().year}/{datetime.now().month}/")
     created = jmodels.jDateTimeField(auto_now_add=True)
@@ -130,9 +129,6 @@ class Image(models.Model):
         indexes = [
             models.Index(fields=['-created'])
         ]
-
-    def __str__(self):
-        return self.title
 
     def delete(self, *args, **kwargs):
         storage, path = self.image_file.storage, self.image_file.path

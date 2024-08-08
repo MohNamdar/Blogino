@@ -2,6 +2,7 @@ from django import template
 from ..models import *
 from markdown import markdown
 from django.utils.safestring import mark_safe
+import jdatetime
 
 register = template.Library()
 
@@ -35,3 +36,20 @@ def tags_list(count=0):
 def last_articles(count=3):
     articles = Article.objects.all().order_by('-update_date')[:count]
     return articles
+
+
+PERSIAN_MONTHS = [
+    'فروردین', 'اردیبهشت', 'خرداد', 'تیر',
+    'مرداد', 'شهریور', 'مهر', 'آبان',
+    'آذر', 'دی', 'بهمن', 'اسفند'
+]
+
+
+@register.filter(name='jalali_date')
+def jalali_date(value):
+    if isinstance(value, (jdatetime.datetime, jdatetime.date)):
+        day = value.day
+        month = PERSIAN_MONTHS[value.month - 1]
+        year = value.year
+        return f'{day} {month} {year}'
+    return value

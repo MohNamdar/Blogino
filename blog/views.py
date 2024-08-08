@@ -44,7 +44,21 @@ def home(request):
 
 
 def gallery(request):
-    return render(request, 'blog/gallery.html')
+    images = Image.objects.all()
+    paginator = Paginator(images, 10)
+    page_number = request.GET.get('page', 1)
+    try:
+        page_obj = paginator.page(page_number)
+    except PageNotAnInteger:
+        raise PageNotAnInteger
+    except EmptyPage:
+        raise EmptyPage
+
+    context = {
+        'page_obj': page_obj,
+    }
+
+    return render(request, 'blog/gallery.html', context)
 
 
 def podcast_single(request, slug):
