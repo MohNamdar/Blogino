@@ -184,3 +184,34 @@ def tag_list(request, tag):
     }
 
     return render(request, 'blog/tag_list.html', context)
+
+
+def search(request):
+    form = SearchForm()
+    query = request.GET.get('query', '')
+    results = []
+
+    if query:
+        article_results = Article.objects.filter(
+            Q(title__icontains=query) | Q(content__icontains=query)
+        )
+        image_results = Image.objects.filter(
+            Q(title__icontains=query)
+        )
+        podcast_results = Podcast.objects.filter(
+            Q(title__icontains=query) | Q(content__icontains=query)
+        )
+
+        results = {
+            'articles': article_results,
+            'images': image_results,
+            'podcasts': podcast_results,
+        }
+
+    context = {
+        'form': form,
+        'query': query,
+        'results': results,
+    }
+
+    return render(request, 'search.html', context)

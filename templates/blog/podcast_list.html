@@ -1,6 +1,7 @@
 {% extends 'parent/base.html' %}
 {% load jformat %}
 {% load blog_tags %}
+{% load static %}
 
 {% block title %}صفحه پادکست{% endblock %}
 
@@ -35,7 +36,7 @@
             <section class="card">
                 <h2>آخرین پادکست های ما</h2>
                 <div class="about-text">
-                    <p><img class="about-photo" src="https://via.placeholder.com/200" alt="تصویر نمایه">آخرین پادکست های
+                    <p><img class="about-photo" src="{% static 'media/podcast.jpg' %}" alt="تصویر نمایه">آخرین پادکست های
                         مارو میتونید از طریق پلتفرم های زیر دنبال کنید</p>
                     <br> <br>
                     <div class="podcast-buttons">
