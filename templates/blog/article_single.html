@@ -61,7 +61,7 @@
                 {% last_articles as la %}
                 {% for a in la %}
                     <article class="related-article card">
-                        <h3><a href="{{ a.get_absolute_url }}">{{ a.title}}</a></h3>
+                        <h3><a href="{{ a.get_absolute_url }}">{{ a.title }}</a></h3>
                         <p>{{ a.content | truncatewords:10 }}</p>
                     </article>
                 {% endfor %}
@@ -95,10 +95,9 @@
         </main>
         <!-- Sidebar-->
         <aside class="sidebar">
-            <!-- Social media boxes--><a class="social-box twitter" href="https://twitter.com/" target="_blank">توییتر
-            من</a><a class="social-box telegram" href="https://telegram.org/" target="_blank">کانال تلگرام</a><a
-                class="social-box youtube" href="https://www.youtube.com/" target="_blank">کانال یوتوب</a><a
-                class="social-box instagram" href="https://www.instagram.com/" target="_blank">اینستاگرام من</a>
+            <!-- Social media boxes-->
+            {% include 'partials/social_link_sidebar.html' %}
+            
             <div class="card">
                 <form method="get" action="#">
                     <input type="text" placeholder="جستجوی نوشته‌ها...">

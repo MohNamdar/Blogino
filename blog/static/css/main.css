@@ -332,6 +332,10 @@ footer p:last-of-type {
     margin-bottom: 2rem;
 }
 
+.github {
+    background-color: #003cea;
+}
+
 /* Additional styles for the Contact page form */
 form {
     display: flex;
