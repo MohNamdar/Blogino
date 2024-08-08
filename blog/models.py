@@ -60,8 +60,44 @@ class Tag(models.Model):
         return self.name
 
 
+class Podcast(models.Model):
+    class Category(models.TextChoices):
+        AI = 'AI', 'هوش مصنوعی'
+        TECHNOLOGY = 'TCH', 'تکنولوژی'
+        PROGRAMMING = 'PRG', 'برنامه نویسی'
+        SECURITY = 'SEC', 'امنیت',
+        DAILY = 'DAY', 'روزانه'
+
+    title = models.CharField(max_length=250)
+    cover = models.ImageField(upload_to="cover", blank=True, null=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='podcasts')
+    content = models.TextField(blank=True, null=True)
+    audio = models.FileField(upload_to="podcasts/")
+    create_date = jmodels.jDateTimeField(auto_now_add=True)
+    update_date = jmodels.jDateTimeField(auto_now=True)
+    slug = models.SlugField(max_length=250, unique=True)
+    category = models.CharField(choices=Category.choices, max_length=3, default=Category.TECHNOLOGY)
+    tags = models.ManyToManyField('Tag', related_name='podcasts', blank=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ['-create_date']
+        indexes = [models.Index(fields=['-create_date'])]
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse("blog:podcast_single", kwargs={'slug': self.slug})
+
+
 class Comment(models.Model):
-    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="comments")
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="comments", blank=True, null=True)
+    podcast = models.ForeignKey(Podcast, on_delete=models.CASCADE, related_name="comments", blank=True, null=True)
     name = models.CharField(max_length=100)
     message = models.TextField()
     email = models.EmailField()
