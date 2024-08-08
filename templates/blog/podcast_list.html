@@ -48,7 +48,7 @@
             </section>
             {% for pod in page_obj %}
                 <article class="card">
-                    <h2><a href="{{ pod.get_absulute_url }}">{{ pod.title }}</a>
+                    <h2><a href="{{ pod.get_absolute_url }}">{{ pod.title }}</a>
                     </h2><img src="{{ pod.cover.url }}"
                               alt="تصویر پادکست">
                     <audio controls>

@@ -31,7 +31,7 @@
             <div class="breadcrumb"><a href="{% url 'blog:home' %}">خانه</a> > <a href="{% url 'blog:article_all' %}">مقالات</a>
                 > <a
                         href="{% url 'blog:article_list' article.get_category_display %}">{{ article.get_category_display }}</a>
-                &gt; {{ article.title }}
+                &gt; <span>{{ article.title }}</span>
             </div>
             <article class="card">
                 <!-- Article Content-->

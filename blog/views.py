@@ -47,8 +47,24 @@ def gallery(request):
     return render(request, 'blog/gallery.html')
 
 
-def podcast_single(request):
-    return render(request, 'blog/podcast_single.html')
+def podcast_single(request, slug):
+    podcast = get_object_or_404(Podcast, slug=slug)
+    comments = podcast.comments.filter(active=True)
+    form = CommentForm()
+    comment = None
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.podcast = podcast
+            comment.save()
+    context = {
+        'podcast': podcast,
+        'comments': comments,
+        'form': form,
+        'comment': comment
+    }
+    return render(request, 'blog/podcast_single.html', context)
 
 
 def podcast_list(request, cat=''):
