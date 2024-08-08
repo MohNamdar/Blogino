@@ -1,5 +1,6 @@
 {% extends 'parent/base.html' %}
 {% load blog_tags %}
+{% load static %}
 
 {% block title %}درباره ما{% endblock %}
 
@@ -33,10 +34,21 @@
             <section class="card">
                 <h2>درباره من</h2>
                 <div class="about-text">
-                    <p><img class="about-photo" src="https://via.placeholder.com/200" alt="تصویر نمایه">درود، محمد
+                    <p><img class="about-photo" src="{% static 'media/profile.jpg' %}" alt="تصویر نمایه">درود، محمد
                         نامدار هستم و اینجا یه وبلاگ خودمونی هستش تا در مورد تکنولوژی، برنامه نویسی و همچین چیزایی گپ
                         بزنیم
                     </p>
+                </div>
+
+            </section>
+            <!-- Contact -->
+            <section class="card">
+                <h2>تماس با من</h2>
+                <div class="contact-info">
+                    <p><strong>آدرس ایمیل: </strong><a href="mailto:Mohnamdar01@gmail.com">Mohnamdar01@gmail.com</a></p>
+                    <p><strong>گیت هاب: </strong><a href="https://github.com/MohNamdar">Mohnamdar@</a></p>
+                    <p><strong>اینستاگرام: </strong><a href="https://instagram.com/MohNamdar">Mohnamdar@</a></p>
+                    <p><strong>تلگرام: </strong><a href="https://t.me/MohNamdar">Mohnamdar@</a></p>
                 </div>
             </section>
 
