@@ -69,10 +69,8 @@
 
                     </div>
                     <!-- Date/Time & Comments Count Info-->
-                    <p class="article-info">تاریخ انتشار: {{ article.create_date | jformat:'%Y/%m/%d' }} |
-                        ساعت {{ article.create_date | jformat:'%H:%M' }} | {{ article.comments.count }}
-                        <نظر></نظر>
-                    </p>
+                    <p class="article-info">تاریخ انتشار: {{ pod.create_date | jformat:'%Y/%m/%d' }} |
+                        ساعت {{ pod.create_date | jformat:'%H:%M' }} | {{ pod.comments.count }} نظر </p>
                 </article>
             {% endfor %}
 
@@ -95,12 +93,12 @@
                 <h5 class="sidebar-card-title">دسته‌بندی‌ها</h5>
                 {% category_list %}
             </div>
-            
+
             <!-- Tags Section-->
             <div class="card">
                 <h5 class="sidebar-card-title">برچسب‌ها</h5>
                 {% tags_list %}
-                
+
             </div>
         </aside>
     </div>
