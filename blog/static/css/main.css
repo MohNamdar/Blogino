@@ -910,3 +910,14 @@ pre[class*=language-] {
     color: white;
     text-align: center;
 }
+
+.pagination .page-link.active {
+    display: inline-block;
+    margin: 0 0.3rem;
+    padding: 0.3rem 0.5rem;
+    background-color: #393939;
+    color: #f1f3f4;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: background-color 0.3s ease;
+}

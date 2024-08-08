@@ -28,7 +28,7 @@
         <!-- Main content section-->
         <main>
             <!-- Text Article -->
-            {% for article in articles %}
+            {% for article in page_obj %}
                 <article class="card">
                     <h2><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h2><img
                         src="{{ article.cover.url }}"
@@ -41,10 +41,7 @@
             {% endfor %}
 
             <!-- Pagination row-->
-            <div class="pagination"><a class="page-link" href="#">قبلی</a><a class="page-link active" href="#">1</a><a
-                    class="page-link" href="#">2</a>...<a class="page-link" href="#">23</a><a class="page-link"
-                                                                                              href="#">24</a><a
-                    class="page-link" href="#">بعدی</a></div>
+            {% include 'partials/pagination.html' with page_obj=page_obj %}
         </main>
         <!-- Sidebar-->
         <aside class="sidebar">

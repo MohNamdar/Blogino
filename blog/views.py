@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from blog.forms import *
 from blog.models import *
 import requests
@@ -9,6 +9,15 @@ from datetime import datetime
 # Create your views here.
 def home(request):
     articles = Article.objects.all()
+    paginator = Paginator(articles, 1)
+    page_number = request.GET.get('page', 1)
+    try:
+        page_obj = paginator.page(page_number)
+    except PageNotAnInteger:
+        raise PageNotAnInteger
+    except EmptyPage:
+        raise EmptyPage
+
     today = datetime.today()
     url = f'https://holidayapi.ir/gregorian/{today.year}/{today.month}/{today.day}'
     response = requests.get(url)
@@ -18,8 +27,8 @@ def home(request):
         events.append(event['description'])
 
     context = {
-        'articles': articles,
-        'events': events
+        'page_obj': page_obj,
+        'events': events,
     }
 
     return render(request, 'blog/home.html', context)
@@ -86,9 +95,18 @@ def article_list(request, cat=''):
     else:
         articles = Article.objects.all()
 
+    paginator = Paginator(articles, 1)
+    page_number = request.GET.get('page', 1)
+    try:
+        page_obj = paginator.page(page_number)
+    except PageNotAnInteger:
+        raise PageNotAnInteger
+    except EmptyPage:
+        raise EmptyPage
+
     context = {
+        'page_obj': page_obj,
         'category': cat,
-        'articles': articles
     }
 
     return render(request, 'blog/article_list.html', context)
@@ -97,8 +115,17 @@ def article_list(request, cat=''):
 def tag_list(request, tag):
     tag = get_object_or_404(Tag, name=tag)
     articles = Article.objects.filter(tags=tag)
+    paginator = Paginator(articles, 1)
+    page_number = request.GET.get('page', 1)
+    try:
+        page_obj = paginator.page(page_number)
+    except PageNotAnInteger:
+        raise PageNotAnInteger
+    except EmptyPage:
+        raise EmptyPage
+
     context = {
-        'articles': articles,
+        'page_obj': page_obj,
         'tag': tag
     }
 
