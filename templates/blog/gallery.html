@@ -9,8 +9,8 @@
         <main>
             <section class="card">
                 <h2>گالری تصاویر</h2>
-                <div class="gallery">
-                    {% if page_obj %}
+                {% if page_obj %}
+                    <div class="gallery">
                         {% for image in page_obj %}
                             <div class="photo">
                                 <a href="{{ image.image_file.url }}" target="_blank">
@@ -23,11 +23,11 @@
                             </div>
 
                         {% endfor %}
-                        {% include 'partials/pagination.html' %}
-                    {% else %}
-                        <p style="text-align: center; font-size: 20px;">هیچ تصویری پیدا نشد :(</p>
-                    {% endif %}
-                </div>
+                    </div>
+                    {% include 'partials/pagination.html' %}
+                {% else %}
+                    <p style="text-align: center; font-size: 20px;">هیچ تصویری پیدا نشد :(</p>
+                {% endif %}
             </section>
         </main>
         <!-- Sidebar-->
