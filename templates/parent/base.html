@@ -6,9 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-
+    <!-- Document metadata-->
+    <meta name="description" content="وبسایت شخصی محمد نامدار">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/profile.jpg' %}">
+    <meta name="keywords" content="محمد نامدارنامدار,برنامه نویسی,وبلاگ,شخصی,وبسایت شخصی">
+    <meta name="author" content="Mohammad Namdar | محمد نامدار">
+    <!-- Open Graph meta tags-->
+    <meta property="og:title" content="وبسایت شخصی محمد نامدار">
+    <meta property="og:description" content="وبسایت و وبلاگ شخصی محمد نامدار">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
     {% block head %}{% endblock %}
-
 </head>
 
 <header>

@@ -2,39 +2,21 @@
 {% load blog_tags %}
 {% load static %}
 
-{% block title %}درباره ما{% endblock %}
-
-{% block head %}
-    <!-- Document metadata-->
-    <meta name="description" content="توضیحات مربوط به صفحه">
-    <meta name="keywords" content="کلمات کلیدی مربوط به صفحه">
-    <meta name="author" content="نام نویسنده">
-    <meta name="robots" content="index, follow">
-    <!-- Open Graph meta tags-->
-    <meta property="og:title" content="عنوان صفحه">
-    <meta property="og:description" content="توضیحات مربوط به صفحه">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="آدرس صفحه">
-    <meta property="og:image" content="آدرس تصویر">
-    <!-- Twitter Cards meta tags-->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="عنوان صفحه">
-    <meta name="twitter:description" content="توضیحات مربوط به صفحه">
-    <meta name="twitter:image" content="آدرس تصویر">
-{% endblock %}
+{% block title %}درباره من{% endblock %}
 
 {% block content %}
     <div class="container">
         <!-- Main content section-->
         <main>
             <!-- Breadcrumb navigation-->
-            <div class="breadcrumb"><a href="index.html">خانه</a> &gt;
+            <div class="breadcrumb"><a href="{% url 'blog:home' %}">خانه</a> &gt;
                 درباره من
             </div>
             <section class="card">
                 <h2>درباره من</h2>
                 <div class="about-text">
-                    <p><img class="about-photo" src="{% static 'media/../../blog/static/images/profile.jpg' %}" alt="تصویر نمایه">درود، محمد
+                    <p><img class="about-photo" src="{% static 'images/profile.jpg' %}"
+                            alt="تصویر نمایه">درود، محمد
                         نامدار هستم و اینجا یه وبلاگ خودمونی هستش تا در مورد تکنولوژی، برنامه نویسی و همچین چیزایی گپ
                         بزنیم
                     </p>
