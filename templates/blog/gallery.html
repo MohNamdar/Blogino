@@ -10,21 +10,24 @@
             <section class="card">
                 <h2>گالری تصاویر</h2>
                 <div class="gallery">
-                    {% for image in page_obj %}
-                        <div class="photo">
-                            <a href="{{ image.image_file.url }}" target="_blank">
-                                <img src="{{ image.image_file.url }}" alt="{{ image.title }}">
-                                <div class="caption">
-                                    <h3>{{ image.title }}</h3>
-                                    <p>{{ image.created | jalali_date }}</p>
-                                </div>
-                            </a>
-                        </div>
+                    {% if page_obj %}
+                        {% for image in page_obj %}
+                            <div class="photo">
+                                <a href="{{ image.image_file.url }}" target="_blank">
+                                    <img src="{{ image.image_file.url }}" alt="{{ image.title }}">
+                                    <div class="caption">
+                                        <h3>{{ image.title }}</h3>
+                                        <p>{{ image.created | jalali_date }}</p>
+                                    </div>
+                                </a>
+                            </div>
 
-                    {% endfor %}
-
+                        {% endfor %}
+                        {% include 'partials/pagination.html' %}
+                    {% else %}
+                        <p style="text-align: center; font-size: 20px;">هیچ تصویری پیدا نشد :(</p>
+                    {% endif %}
                 </div>
-                {% include 'partials/pagination.html' %}
             </section>
         </main>
         <!-- Sidebar-->
