@@ -8,21 +8,26 @@
     <div class="container">
         <!-- Main content section-->
         <main>
-            <!-- Text Article -->
-            {% for article in page_obj %}
-                <article class="card">
-                    <h2><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h2><img
-                        src="{{ article.cover.url }}"
-                        alt="تصویر مقاله">
-                    <p>{{ article.content | truncatewords:20 }}</p>
-                    <!-- Date/Time & Comments Count Info-->
-                    <p class="article-info">تاریخ انتشار: {{ article.create_date | jformat:'%Y/%m/%d' }} |
-                        ساعت {{ article.create_date | jformat:'%H:%M' }} | {{ article.comments.count }} نظر</p>
-                </article>
-            {% endfor %}
 
-            <!-- Pagination row-->
-            {% include 'partials/pagination.html' with page_obj=page_obj %}
+            {% if page_obj %}
+                <!-- Text Article -->
+                {% for article in page_obj %}
+                    <article class="card">
+                        <h2><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h2><img
+                            src="{{ article.cover.url }}"
+                            alt="تصویر مقاله">
+                        <p>{{ article.content | truncatewords:20 }}</p>
+                        <!-- Date/Time & Comments Count Info-->
+                        <p class="article-info">تاریخ انتشار: {{ article.create_date | jformat:'%Y/%m/%d' }} |
+                            ساعت {{ article.create_date | jformat:'%H:%M' }} | {{ article.comments.count }} نظر</p>
+                    </article>
+                {% endfor %}
+                <!-- Pagination row-->
+                {% include 'partials/pagination.html' with page_obj=page_obj %}
+            {% else %}
+                <p style="text-align: center; font-size: 20px;">هیچ مقاله ای پیدا نشد :(</p>
+            {% endif %}
+
         </main>
         <!-- Sidebar-->
         <aside class="sidebar">

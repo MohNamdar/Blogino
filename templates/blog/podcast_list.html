@@ -17,7 +17,8 @@
             <section class="card">
                 <h2>آخرین پادکست های ما</h2>
                 <div class="about-text">
-                    <p><img class="about-photo" src="{% static 'media/../../blog/static/images/podcast.jpg' %}" alt="تصویر نمایه">آخرین پادکست های
+                    <p><img class="about-photo" src="{% static 'images/profile.jpg' %}"
+                            alt="تصویر نمایه">آخرین پادکست های
                         مارو میتونید از طریق پلتفرم های زیر دنبال کنید</p>
                     <br> <br>
                     <div class="podcast-buttons">
@@ -28,37 +29,38 @@
                     </div>
                 </div>
             </section>
-            {% for pod in page_obj %}
-                <article class="card">
-                    <h2><a href="{{ pod.get_absolute_url }}">{{ pod.title }}</a>
-                    </h2><img src="{{ pod.cover.url }}"
-                              alt="تصویر پادکست">
-                    <audio controls>
-                        <source src="{{ pod.audio.url }}" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                    <p>{{ pod.content | truncatewords:15 }}</p>
-                    <div class="podcast-buttons">
-                        {% if pod.castbox_link %}
-                            <a href="#" target="_blank">گوش دادن در کست‌باکس</a>
-                        {% endif %}
-                        {% if pod.apple_podcast_link %}
-                            <a href="#" target="_blank">گوش دادن در اپل پادکست</a>
-                        {% endif %}
-                        {% if pod.google_podcasat_link %}
-                            <a href="#" target="_blank">گوش دادن در گوگل پادکست</a>
-                        {% endif %}
+            {% if page_obj %}
+                {% for pod in page_obj %}
+                    <article class="card">
+                        <h2><a href="{{ pod.get_absolute_url }}">{{ pod.title }}</a>
+                        </h2><img src="{{ pod.cover.url }}"
+                                  alt="تصویر پادکست">
+                        <audio controls>
+                            <source src="{{ pod.audio.url }}" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                        <p>{{ pod.content | truncatewords:15 }}</p>
+                        <div class="podcast-buttons">
+                            {% if pod.castbox_link %}
+                                <a href="#" target="_blank">گوش دادن در کست‌باکس</a>
+                            {% endif %}
+                            {% if pod.apple_podcast_link %}
+                                <a href="#" target="_blank">گوش دادن در اپل پادکست</a>
+                            {% endif %}
+                            {% if pod.google_podcasat_link %}
+                                <a href="#" target="_blank">گوش دادن در گوگل پادکست</a>
+                            {% endif %}
 
-                    </div>
-                    <!-- Date/Time & Comments Count Info-->
-                    <p class="article-info">تاریخ انتشار: {{ pod.create_date | jformat:'%Y/%m/%d' }} |
-                        ساعت {{ pod.create_date | jformat:'%H:%M' }} | {{ pod.comments.count }} نظر </p>
-                </article>
-            {% endfor %}
-
-
-            {% include 'partials/pagination.html' %}
-
+                        </div>
+                        <!-- Date/Time & Comments Count Info-->
+                        <p class="article-info">تاریخ انتشار: {{ pod.create_date | jformat:'%Y/%m/%d' }} |
+                            ساعت {{ pod.create_date | jformat:'%H:%M' }} | {{ pod.comments.count }} نظر </p>
+                    </article>
+                {% endfor %}
+                {% include 'partials/pagination.html' %}
+            {% else %}
+                <p style="text-align: center; font-size: 20px;">هیچ مقاله ای پیدا نشد :(</p>
+            {% endif %}
         </main>
         <!-- Sidebar-->
         <aside class="sidebar">
