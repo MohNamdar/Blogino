@@ -23,7 +23,7 @@
                     Your browser does not support the audio element.
                 </audio>
                 <section>
-                    {{ podcast.content | markdown}}
+                    {{ podcast.content | markdown }}
                 </section>
                 <div class="podcast-buttons">
                     {% if podcast.castbox_link %}
@@ -81,8 +81,8 @@
             {% include 'partials/social_link_sidebar.html' %}
 
             <div class="card">
-                <form method="get" action="#">
-                    <input type="text" placeholder="جستجوی نوشته‌ها...">
+                <form method="get" action="{% url 'blog:search' %}">
+                    <input type="text" name="query" placeholder="جستجوی نوشته‌ها..." required>
                     <button type="submit">>></button>
                 </form>
             </div>

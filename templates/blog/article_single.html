@@ -19,7 +19,7 @@
                 <h1><a href="#">{{ article.title }}</a></h1><img
                     src="{{ article.cover.url }}" alt="تصویر مقاله">
                 <section>
-                    {{ article.content | markdown}}
+                    {{ article.content | markdown }}
                 </section>
                 <!-- Article Tags-->
                 <div class="article-tags">
@@ -78,10 +78,10 @@
         <aside class="sidebar">
             <!-- Social media boxes-->
             {% include 'partials/social_link_sidebar.html' %}
-            
+
             <div class="card">
-                <form method="get" action="#">
-                    <input type="text" placeholder="جستجوی نوشته‌ها...">
+                <form method="get" action="{% url 'blog:search' %}">
+                    <input type="text" name="query" placeholder="جستجوی نوشته‌ها..." required>
                     <button type="submit">>></button>
                 </form>
             </div>

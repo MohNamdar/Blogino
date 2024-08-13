@@ -42,8 +42,8 @@
                 class="social-box youtube" href="https://www.youtube.com/" target="_blank">کانال یوتوب</a><a
                 class="social-box instagram" href="https://www.instagram.com/" target="_blank">اینستاگرام من</a>
             <div class="card">
-                <form method="get" action="#">
-                    <input type="text" placeholder="جستجوی نوشته‌ها...">
+                <form method="get" action="{% url 'blog:search' %}">
+                    <input type="text" name="query" placeholder="جستجوی نوشته‌ها..." required>
                     <button type="submit">>></button>
                 </form>
             </div>
