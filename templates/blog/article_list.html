@@ -2,16 +2,29 @@
 {% load jformat %}
 {% load blog_tags %}
 
-{% block title %}مقاله‌های دسته‌بندی {{ category }}{% endblock %}
+
+{% block title %}مقاله‌ها "{% if query %}{{ query }}{% else %}{{ category }}{% endif %}"{% endblock %}
+
 
 {% block content %}
     <div class="container">
         <!-- Main content section-->
         <main>
-            <!-- Breadcrumb navigation-->
-            <div class="breadcrumb"><a href="index.html">خانه</a> &gt; <a href="article-list.html">مقاله‌ها</a> &gt;
-                {{ category }}
-            </div>
+            {% if query %}
+                <!-- Breadcrumb navigation-->
+                <div class="breadcrumb"><a href="{% url 'blog:home' %}">خانه</a> &gt; <a
+                        href="#">مقاله‌ها</a> &gt; جستجو
+                    "{{ query }}"
+                </div>
+            {% else %}
+                <!-- Breadcrumb navigation-->
+                <div class="breadcrumb"><a href="{% url 'blog:home' %}">خانه</a> &gt; <a
+                        href="#">مقاله‌ها</a>
+                    &gt;
+                    {{ category }}
+                </div>
+            {% endif %}
+
 
             {% if page_obj %}
                 <!-- Articles-->
@@ -19,7 +32,7 @@
                     <article class="card">
                         <h2><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h2><img
                             src="{{ article.cover.url }}"
-                            alt="تصویر مقاله">
+                            alt="تصویر مقاله">  
                         <p>{{ article.content | truncatewords:20 }}</p>
                         <!-- Date/Time & Comments Count Info-->
                         <p class="article-info">تاریخ انتشار: {{ article.create_date | jformat:'%Y/%m/%d' }} |

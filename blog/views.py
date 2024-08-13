@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.postgres.search import TrigramSimilarity
+
 from blog.forms import *
 from blog.models import *
 import requests
@@ -183,31 +185,25 @@ def tag_list(request, tag):
 
 
 def search(request):
-    form = SearchForm()
-    query = request.GET.get('query', '')
-    results = []
+    query = None
+    result = []
 
-    if query:
-        article_results = Article.objects.filter(
-            Q(title__icontains=query) | Q(content__icontains=query)
-        )
-        image_results = Image.objects.filter(
-            Q(title__icontains=query)
-        )
-        podcast_results = Podcast.objects.filter(
-            Q(title__icontains=query) | Q(content__icontains=query)
-        )
+    if 'query' in request.GET:
+        query = request.GET['query']
+        result = (Article.objects.annotate(similarity=TrigramSimilarity('title', query))
+                  .filter(similarity__gte=0.1).order_by('-similarity'))
 
-        results = {
-            'articles': article_results,
-            'images': image_results,
-            'podcasts': podcast_results,
-        }
+    paginator = Paginator(result, PAGINATION_PER_PAGE)
+    page_number = request.GET.get('page', 1)
+    try:
+        page_obj = paginator.page(page_number)
+    except PageNotAnInteger:
+        raise PageNotAnInteger
+    except EmptyPage:
+        raise EmptyPage
 
     context = {
-        'form': form,
         'query': query,
-        'results': results,
+        'page_obj': page_obj,
     }
-
-    return render(request, 'search.html', context)
+    return render(request, 'blog/article_list.html', context)

@@ -13,4 +13,5 @@ urlpatterns = [
     path('article-list/<str:cat>', views.article_list, name='article_list'),
     path('tag/<str:tag>', views.tag_list, name='tag_list'),
     path('article/<slug>', views.article_single, name='article_single'),
+    path('search/', views.search, name='search'),
 ]
