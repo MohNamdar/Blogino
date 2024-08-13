@@ -32,6 +32,7 @@ To run this project locally, follow these steps:
 - Django 4.2+
 - Git
 - Virtualenv (recommended)
+- PostgreSQL with `pg_trgm` extension installed
 
 ### Clone the Repository
 ```bash
@@ -48,6 +49,20 @@ source env/bin/activate  # On Windows use `env\Scripts\activate`
 ### Install Dependencies
 ```bash
 pip install -r requirements.txt
+```
+
+### Customize Database Settings
+
+Before running the project, make sure to customize the database settings in settings.py to match your PostgreSQL database configuration. You must also ensure that the pg_trgm extension is installed in your PostgreSQL database. You can do this by running the following SQL command:
+```bash
+CREATE EXTENSION IF NOT EXISTS pg_trgm;
+```
+
+### Apply Migrations
+After configuring your database, run the following commands to apply the migrations:
+```bash
+python manage.py makemigrations
+python manage.py migrate
 ```
 
 ### Run the Development Server
