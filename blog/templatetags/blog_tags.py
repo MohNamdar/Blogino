@@ -26,14 +26,16 @@ def article_counter(category=''):
 
 
 @register.inclusion_tag('partials/tags_list.html')
-def tags_list(count=0):
+def tags_list(count=0, ref=None):
+    if ref:
+        return {'tags': Tag.objects.filter(articles=ref)}
     if count:
         return {'tags': Tag.objects.all()[:count]}
     return {'tags': Tag.objects.all()}
 
 
 @register.simple_tag()
-def last_articles(count=3):
+def last_articles(count=2):
     articles = Article.objects.all().order_by('-update_date')[:count]
     return articles
 

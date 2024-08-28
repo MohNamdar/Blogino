@@ -22,7 +22,7 @@ class Article(models.Model):
         DAILY = 'DAY', 'روزانه'
 
     title = models.CharField(max_length=250)
-    cover = models.ImageField(upload_to="cover", blank=True, null=True)
+    cover = models.ImageField(upload_to=f"covers/article/{datetime.now().year}/{datetime.now().month}/", blank=True, null=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='articles')
     content = models.TextField()
     create_date = jmodels.jDateTimeField(auto_now_add=True)
@@ -69,10 +69,10 @@ class Podcast(models.Model):
         DAILY = 'DAY', 'روزانه'
 
     title = models.CharField(max_length=250)
-    cover = models.ImageField(upload_to="cover", blank=True, null=True)
+    cover = models.ImageField(upload_to=f"covers/podcast/{datetime.now().year}/{datetime.now().month}/", blank=True, null=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='podcasts')
     content = models.TextField(blank=True, null=True)
-    audio = models.FileField(upload_to="podcasts/")
+    audio = models.FileField(upload_to=f"podcasts/{datetime.now().year}/{datetime.now().month}/")
     create_date = jmodels.jDateTimeField(auto_now_add=True)
     update_date = jmodels.jDateTimeField(auto_now=True)
     slug = models.SlugField(max_length=250, unique=True)
@@ -121,7 +121,7 @@ class Comment(models.Model):
 class Image(models.Model):
     title = models.CharField(max_length=250, null=True, blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='images')
-    image_file = models.ImageField(upload_to=f"images/{datetime.now().year}/{datetime.now().month}/")
+    image_file = models.ImageField(upload_to=f"gallery/{datetime.now().year}/{datetime.now().month}/")
     created = jmodels.jDateTimeField(auto_now_add=True)
 
     class Meta:

@@ -2,96 +2,108 @@
 {% load jformat %}
 {% load blog_tags %}
 
-{% block title %}صفحه پادکست تکی{% endblock %}
+{% block title %}
+  پادکست: {{ podcast.title }}
+{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <!-- Main content section-->
-        <main>
-            <!-- Breadcrumb navigation-->
-            <div class="breadcrumb"><a href="{% url 'blog:home' %}">خانه</a> > <a href="{% url 'blog:podcast_list' %}">پادکست
-                ها</a>
-                > <span>{{ podcast.get_category_display }}</span>
-                &gt; <span>{{ podcast.title }}</span>
-            </div>
-            <article class="card">
-                <h2><a href="#">{{ podcast.title }}</a></h2>
-                <img
-                        src="{{ podcast.cover.url }}" alt="تصویر پادکست">
-                <audio controls>
-                    <source src="{{ podcast.audio.url }}" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-                <section>
-                    {{ podcast.content | markdown }}
-                </section>
-                <div class="podcast-buttons">
-                    {% if podcast.castbox_link %}
-                        <a href="#" target="_blank">گوش دادن در کست‌باکس</a>
-                    {% endif %}
-                    {% if podcast.apple_podcast_link %}
-                        <a href="#" target="_blank">گوش دادن در اپل پادکست</a>
-                    {% endif %}
-                    {% if podcast.google_podcasat_link %}
-                        <a href="#" target="_blank">گوش دادن در گوگل پادکست</a>
-                    {% endif %}
-                </div>
-                <div class="article-tags">
-                    <h5>برچسب‌ها:</h5>
-                    <ul class="tags-list">
-                        {% for tag in podcast.tags.all %}
-                            <li><a href="{% url 'blog:tag_list' tag.name %}">{{ tag.name }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </div>
+  <!-- Breadcrumb -->
+  <nav class="flex px-5 py-3 text-gray-700 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700" aria-label="Breadcrumb">
+    <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+      <li class="inline-flex items-center">
+        <a href="{% url 'blog:home' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+          <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
+          </svg>خانه
+        </a>
+      </li>
+      <li>
+        <div class="flex items-center">
+          <svg class="rtl:rotate-180 block w-3 h-3 mx-1 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+          </svg>
+          <a href="{% url 'blog:podcast_list' %}" class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">پادکست ها</a>
+        </div>
+      </li>
+      <li aria-current="page">
+        <div class="flex items-center">
+          <svg class="rtl:rotate-180 w-3 h-3 mx-1 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+          </svg>
+          <a href="{% url 'blog:podcast_list' %}" class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">{{ podcast.get_category_display }}</a>
+        </div>
+      </li>
+    </ol>
+  </nav>
 
-                <!-- Date/Time & Comments Count Info-->
-                <p class="article-info">تاریخ انتشار: {{ podcast.create_date | jformat:'%Y/%m/%d' }} |
-                    ساعت {{ podcast.create_date | jformat:'%H:%M' }}</p>
-            </article>
+  <!-- podcast Content -->
+  <article class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
+    <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+      <div class="mx-auto max-w-5xl">
+        <h1 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">{{ podcast.title }}</h1>
+        <div class="my-8 xl:mb-16 xl:mt-12">
+          <img class="w-full rounded-lg" src="{{ podcast.cover.url }}" alt="{{ podcast.title }} " />
+          <audio controls class="w-full my-4">
+            <source src="{{ podcast.audio.url }}" type="audio/mpeg" />Your browser does not support the audio element.
+          </audio>
+        </div>
+        <div class="mx-auto mb-6 max-w-3xl space-y-6 md:mb-12 text-gray-900 dark:text-white">{{ podcast.content|markdown }}</div>
+      </div>
 
-            <!-- Comments Section-->
-            <div class="comments-section">
-                <h4>نظرات ({{ comments.count }} نظر)</h4>
-                {% for comment in comments %}
-                    <div class="card">
-                        <h4>{{ comment.name }}</h4>
-                        <p>{{ comment.message }}</p>
-                        <p class="comment-info">{{ comment.created | jformat:'%H:%M - %Y/%m/%d' }}</p>
-                    </div>
-                {% endfor %}
-                <div class="card">
-                    <h4>ثبت نظر</h4>
-                    {% if comment %}
-                        <div class="toast">
-                            <p>کامنت شما ثبت شد</p>
-                        </div>
-                    {% endif %}
-                    <form method="POST">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit">ارسال نظر</button>
-                    </form>
-                </div>
-            </div>
-        </main>
-        <!-- Sidebar-->
-        <aside class="sidebar">
-            <!-- Social media boxes-->
-            {% include 'partials/social_link_sidebar.html' %}
+      <!-- Links -->
+      <div class="mt-4 block w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        {% if podcast.castbox_link %}
+          <a href="#" target="_blank" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">گوش دادن در کست باکس</a>
+        {% endif %}
+        {% if podcast.apple_podcast_link %}
+          <a href="#" target="_blank" class="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">گوش دادن در اپل پادکست</a>
+        {% endif %}
+        {% if podcast.google_podcasat_link %}
+          <a href="#" class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">گوش دادن در گوگل پادکست</a>
+        {% endif %}
+      </div>
 
-            <div class="card">
-                <form method="get" action="{% url 'blog:search' %}">
-                    <input type="text" name="query" placeholder="جستجوی نوشته‌ها..." required>
-                    <button type="submit">>></button>
-                </form>
-            </div>
-            <div class="card">
-                <h5 class="sidebar-card-title">دسته‌بندی‌ها</h5>
-                {% category_list %}
-            </div>
-        </aside>
+      <!-- Date/Time & Comments Count Info -->
+      <div class="mt-4 block w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <p class="text-white">تاریخ انتشار: {{ podcast.create_date|jformat:'%Y/%m/%d' }} | ساعت {{ podcast.create_date|jformat:'%H:%M' }}</p>
+      </div>
     </div>
+  </article>
 
+  <!-- Comments Section -->
+  <section class="bg-white dark:bg-gray-900 py-8 lg:py-16 antialiased">
+    <div class="max-w-2xl mx-auto px-4">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">نظرات ({{ comments.count }})</h2>
+      </div>
 
+      <form class="mb-6" method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+          <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">{{ field }}</div>
+        {% endfor %}
+        <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">ثبت نظر</button>
+      </form>
+      {% if comment %}
+        <div class="toast">
+          <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">کامنت شما ثبت شد</div>
+        </div>
+      {% endif %}
+
+      <!-- All Comments -->
+      {% for comment in comments %}
+        <div class="p-6 mb-3 ml-6 lg:ml-12 text-base bg-white rounded-lg dark:bg-gray-800">
+          <footer class="flex justify-between items-center mb-2">
+            <div class="flex items-center">
+              <p class="inline-flex items-center text-sm text-gray-900 dark:text-white font-semibold">{{ comment.name }}</p>
+              <p class="text-sm text-gray-600 dark:text-gray-400">
+                <span class="mx-4">{{ comment.created|jformat:'%H:%M - %Y/%m/%d' }}</span>
+              </p>
+            </div>
+          </footer>
+          <p class="text-gray-500 dark:text-gray-400">{{ comment.message }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
 {% endblock %}

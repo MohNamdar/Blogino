@@ -1,13 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.generic.list import ListView
 from django.contrib.postgres.search import TrigramSimilarity
-
 from blog.forms import *
 from blog.models import *
 import requests
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 
-PAGINATION_PER_PAGE = 5
+PAGINATION_PER_PAGE = 6
 CATEGORY_MAP = {
     'هوش مصنوعی': 'AI',
     'تکنولوژی': 'TCH',
@@ -30,7 +32,8 @@ def home(request):
         raise EmptyPage
 
     today = datetime.today()
-    url = f'https://holidayapi.ir/gregorian/{today.year}/{today.month}/{today.day}'
+    url = f'https://holidayapi.ir/gregorian/{
+    today.year}/{today.month}/{today.day}'
     response = requests.get(url)
     data = response.json()
     events = []
@@ -45,22 +48,10 @@ def home(request):
     return render(request, 'blog/home.html', context)
 
 
-def gallery(request):
-    images = Image.objects.all()
-    paginator = Paginator(images, 10)
-    page_number = request.GET.get('page', 1)
-    try:
-        page_obj = paginator.page(page_number)
-    except PageNotAnInteger:
-        raise PageNotAnInteger
-    except EmptyPage:
-        raise EmptyPage
-
-    context = {
-        'page_obj': page_obj,
-    }
-
-    return render(request, 'blog/gallery.html', context)
+class GalleryListView(ListView):
+    model = Image
+    paginate_by = 10
+    template_name = "blog/gallery.html"
 
 
 def podcast_single(request, slug):
@@ -144,8 +135,10 @@ def article_list(request, cat=''):
             articles = Article.objects.filter(category=category_value)
         else:
             return redirect('blog:home')
+
     else:
         articles = Article.objects.all()
+        cat = 'همه مقاله‌ها'
 
     paginator = Paginator(articles, PAGINATION_PER_PAGE)
     page_number = request.GET.get('page', 1)
@@ -207,3 +200,9 @@ def search(request):
         'page_obj': page_obj,
     }
     return render(request, 'blog/article_list.html', context)
+
+
+@login_required
+def log_out(request):
+    logout(request)
+    return redirect('blog:home')

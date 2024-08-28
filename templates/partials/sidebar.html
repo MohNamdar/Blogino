@@ -1,0 +1,32 @@
+{% load blog_tags %}
+
+<aside>
+  <!-- Social media boxes -->
+  {% include 'partials/social_link_sidebar.html' %}
+
+  <!-- Categories List -->
+  <div class="mt-4 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">دسته‌بندی‌ها</h5>
+    {% category_list %}
+  </div>
+
+  {% if events %}
+    <!-- Today Events Section -->
+    <div class="mt-4 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">درچنین روزی:</h5>
+      <ul>
+        {% for event in events %}
+          <li class="text-gray-400">{{ event }}</li>
+          <br />
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  <!-- Tags Section -->
+
+  <div class="mt-4 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">برچسب‌ها</h5>
+    {% tags_list %}
+  </div>
+</aside>

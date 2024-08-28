@@ -18,8 +18,12 @@
 
 ## Preview
 
-![homepage](https://github.com/MohNamdar/Blogino/blob/main/blog/static/images/screenshots/homepage.png)
-![podcast](https://github.com/MohNamdar/Blogino/blob/main/blog/static/images/screenshots/podcast_list.png)
+![homepage](https://github.com/MohNamdar/Blogino/blob/main/blog/static/images/screenshots/homepage.jpg)
+![article list](https://github.com/MohNamdar/Blogino/blob/main/blog/static/images/screenshots/article_list.jpg)
+![podcast list](https://github.com/MohNamdar/Blogino/blob/main/blog/static/images/screenshots/podcast_list.jpg)
+![gallery](https://github.com/MohNamdar/Blogino/blob/main/blog/static/images/screenshots/gallery.jpg)
+![article_page1](https://github.com/MohNamdar/Blogino/blob/main/blog/static/images/screenshots/article_page1.jpg)
+![article_page2](https://github.com/MohNamdar/Blogino/blob/main/blog/static/images/screenshots/article_page2.jpg)
 
 
 ## Installation
@@ -84,6 +88,5 @@ python manage.py createsuperuser
 Contributions are welcome! Please open an issue or submit a pull request for any improvements or features you'd like to see.
 
 ### Acknowledgments
-- The HTML & CSS template is based on the Simple Blog Template by [Milad Nouri](https://github.com/miladnouri).
 - Django framework for making web development easier and faster.
 - Thanks to all contributors!

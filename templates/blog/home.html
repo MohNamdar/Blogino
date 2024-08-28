@@ -1,64 +1,27 @@
-{% extends 'parent/base.html' %}
+m {% extends 'parent/base.html' %}
 {% load static %}
 {% load jformat %}
 {% load blog_tags %}
-{% block title %}صفحه اصلی{% endblock %}
+{% block title %}
+  خانه
+{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <!-- Main content section-->
-        <main>
-
-            {% if page_obj %}
-                <!-- Text Article -->
-                {% for article in page_obj %}
-                    <article class="card">
-                        <h2><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h2><img
-                            src="{{ article.cover.url }}"
-                            alt="تصویر مقاله">
-                        <p>{{ article.content | truncatewords:20 }}</p>
-                        <!-- Date/Time & Comments Count Info-->
-                        <p class="article-info">تاریخ انتشار: {{ article.create_date | jformat:'%Y/%m/%d' }} |
-                            ساعت {{ article.create_date | jformat:'%H:%M' }} | {{ article.comments.count }} نظر</p>
-                    </article>
-                {% endfor %}
-                <!-- Pagination row-->
-                {% include 'partials/pagination.html' with page_obj=page_obj %}
-            {% else %}
-                <p style="text-align: center; font-size: 20px;">هیچ مقاله ای پیدا نشد :(</p>
-            {% endif %}
-
-        </main>
-        <!-- Sidebar-->
-        <aside class="sidebar">
-            <!-- Social media boxes-->
-            {% include 'partials/social_link_sidebar.html' %}
-            <div class="card">
-                <form method="get" action="{% url 'blog:search' %}">
-                    <input type="text" name="query" placeholder="جستجوی نوشته‌ها..." required>
-                    <button type="submit">>></button>
-                </form>
-            </div>
-            <div class="card">
-                <h5 class="sidebar-card-title">دسته‌بندی‌ها</h5>
-                {% category_list %}
-            </div>
-            <!-- Today Events Section -->
-            <div class="card">
-                <h5 class="sidebar-card-title">درچنین روزی:</h5>
-                <ul>
-                    {% for event in events %}
-                        <li>{{ event }}</li>
-                        <br>
-                    {% endfor %}
-                </ul>
-            </div>
-
-            <!-- Tags Section-->
-            <div class="card">
-                <h5 class="sidebar-card-title">برچسب‌ها</h5>
-                {% tags_list %}
-            </div>
-        </aside>
+  <section dir="ltr" class="bg-white dark:bg-gray-900">
+    <div class="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
+      <img class="w-full" src="{% static 'media\laptop-animation.gif' %}" alt="dashboard image" />
+      <div class="mt-4 md:mt-0">
+        <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white text-right">👋 محمد نامدار هستم</h2>
+        <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400 text-right">مقاله ها و پادکست هایی که منتشر میکنم رو توی همین وبسایت آپلود میکنم</p>
+        <div class="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
+          <a href="{% url 'blog:about' %}" class="inline-flex items-center justify-center px-4 py-2.5 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4" />
+            </svg>مشاهده روزمه
+          </a>
+          <a href="{% url 'blog:article_all' %}" class="inline-flex items-center justify-center px-4 py-2.5 text-base font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">مشاهده مقالات</a>
+        </div>
+      </div>
     </div>
+  </section>
 {% endblock %}
