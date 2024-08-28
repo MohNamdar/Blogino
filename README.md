@@ -6,7 +6,7 @@
 
 **Blogino** is a simple weblog website built using Django for the backend and a custom HTML & CSS theme. The project is designed to provide a basic blogging platform with essential features like post creation, editing, and viewing.
 
-![Blogino](https://github.com/MohNamdar/Blogino/blob/main/blog/static/images/Blogino.jpg)
+![homepage](https://github.com/MohNamdar/Blogino/blob/main/blog/static/images/screenshots/homepage.jpg)
 
 ## Features
 
@@ -18,7 +18,6 @@
 
 ## Preview
 
-![homepage](https://github.com/MohNamdar/Blogino/blob/main/blog/static/images/screenshots/homepage.jpg)
 ![article list](https://github.com/MohNamdar/Blogino/blob/main/blog/static/images/screenshots/article_list.jpg)
 ![podcast list](https://github.com/MohNamdar/Blogino/blob/main/blog/static/images/screenshots/podcast_list.jpg)
 ![gallery](https://github.com/MohNamdar/Blogino/blob/main/blog/static/images/screenshots/gallery.jpg)
@@ -89,4 +88,5 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 
 ### Acknowledgments
 - Django framework for making web development easier and faster.
+- Using on Personal Webpage [Mohnam.ir](https://Mohnam.ir)
 - Thanks to all contributors!
