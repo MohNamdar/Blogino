@@ -10,9 +10,9 @@ __pycache__/
 __pycache__/
 local_settings.py
 
+### Custome ####
 .env
 db.sqlite3
 .idea
-/blog/migrations/
-/media/
-/media/
+/media
+/liara.json
