@@ -12,6 +12,7 @@ local_settings.py
 
 ### Custome ####
 .env
+.venv
 db.sqlite3
 .idea
 /media
