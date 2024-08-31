@@ -92,7 +92,7 @@
         <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">نظرات ({{ comments.count }})</h2>
       </div>
 
-      <form class="mb-6" method="POST">
+      <form class="mb-6" method="POST" action="#comments">
         {% csrf_token %}
         {% for field in form %}
           <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">{{ field }}</div>
@@ -100,7 +100,7 @@
         <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">ثبت نظر</button>
       </form>
       {% if comment %}
-        <div class="toast">
+        <div class="toast mt-4" id="comments">
           <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">کامنت شما ثبت شد</div>
         </div>
       {% endif %}
