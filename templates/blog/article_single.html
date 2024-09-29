@@ -62,27 +62,29 @@
 
   <!-- Related Articles -->
   <section>
-    <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">آخرین مقاله ها</h2>
-    <section class="bg-white dark:bg-gray-900">
-      <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-        <div class="grid gap-8 lg:grid-cols-2">
-          {% last_articles as la %}
-          {% for a in la %}
-            <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-              <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><a href="{{ a.get_absolute_url }}">{{ a.title }}</a></h2>
-              <p class="mb-5 font-light text-gray-500 dark:text-gray-400">{{ a.content|truncatewords:30 }}</p>
-              <div class="flex justify-between items-center" dir="ltr">
-                <a href="{{ a.get_absolute_url }}" class="inline-flex items-center font-medium text-gray-500 dark:text-gray-300 hover:underline">
-                  <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4" />
-                  </svg>بیشتر بخوانید
-                </a>
-              </div>
-            </article>
-          {% endfor %}
+    {% last_articles id=article.id as la %}
+    {% if la %}
+      <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">آخرین مقاله ها</h2>
+      <section class="bg-white dark:bg-gray-900">
+        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+          <div class="grid gap-8 lg:grid-cols-2">
+            {% for a in la %}
+              <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+                <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><a href="{{ a.get_absolute_url }}">{{ a.title }}</a></h2>
+                <p class="mb-5 font-light text-gray-500 dark:text-gray-400">{{ a.content|truncatewords:30 }}</p>
+                <div class="flex justify-between items-center" dir="ltr">
+                  <a href="{{ a.get_absolute_url }}" class="inline-flex items-center font-medium text-gray-500 dark:text-gray-300 hover:underline">
+                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4" />
+                    </svg>بیشتر بخوانید
+                  </a>
+                </div>
+              </article>
+            {% endfor %}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    {% endif %}
   </section>
 
   <!-- Comments Section -->

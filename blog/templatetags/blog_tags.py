@@ -35,8 +35,8 @@ def tags_list(count=0, ref=None):
 
 
 @register.simple_tag()
-def last_articles(count=2):
-    articles = Article.objects.all().order_by('-update_date')[:count]
+def last_articles(id, count=2):
+    articles = Article.objects.all().exclude(id=id).order_by('-update_date')[:count]
     return articles
 
 
