@@ -21,19 +21,8 @@ CATEGORY_MAP = {
 
 # Create your views here.
 def home(request):
-    articles = Article.objects.all()
-    paginator = Paginator(articles, PAGINATION_PER_PAGE)
-    page_number = request.GET.get('page', 1)
-    try:
-        page_obj = paginator.page(page_number)
-    except PageNotAnInteger:
-        raise PageNotAnInteger
-    except EmptyPage:
-        raise EmptyPage
-
     today = datetime.today()
-    url = f'https://holidayapi.ir/gregorian/{
-    today.year}/{today.month}/{today.day}'
+    url = f'https://holidayapi.ir/gregorian/{today.year}/{today.month}/{today.day}'
     response = requests.get(url)
     data = response.json()
     events = []
@@ -41,7 +30,6 @@ def home(request):
         events.append(event['description'])
 
     context = {
-        'page_obj': page_obj,
         'events': events,
     }
 
