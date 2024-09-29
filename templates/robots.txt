@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /admin/   # Prevents crawlers from accessing the admin panel
+Disallow: /static/  # Prevents indexing of static files
+Disallow: /media/   # Prevents indexing of user-uploaded media files
+Disallow: /login/   # Prevents crawlers from accessing login page
+Disallow: /signup/  # Prevents indexing of signup page
+
+Sitemap: http://mohnam.ir/sitemap.xml  # Link to your sitemap
